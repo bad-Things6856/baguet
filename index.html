@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sanik Dev Feed</title>
+  <title>My Dev Feed</title>
   <style>
     body {
       background: #0f0f0f;
@@ -10,20 +10,12 @@
       text-align: center;
     }
 
-    .tabs button {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-    }
-
     .post {
       background: #1e1e1e;
       margin: 20px auto;
       padding: 15px;
       width: 80%;
-      border-radius: 12px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -32,49 +24,15 @@
 
 <h1>🚀 My Coding Feed</h1>
 
-<div class="tabs">
-  <button onclick="loadPosts('stm32')">STM32</button>
-  <button onclick="loadPosts('arduino')">Arduino</button>
+<div class="post">
+  <h2>🔥 Arduino Project 1</h2>
+  <p>Built-in LED Blink using delay()</p>
 </div>
 
-<div id="feed"></div>
-
-<script>
-async function loadPosts(type) {
-  const feed = document.getElementById("feed");
-  feed.innerHTML = "Loading...";
-
-  let posts = [
-    `${type}/post1.md`,
-    `${type}/post2.md`
-  ];
-
-  feed.innerHTML = "";
-
-  for (let p of posts) {
-    try {
-      let res = await fetch(p);
-      let text = await res.text();
-
-      let div = document.createElement("div");
-      div.className = "post";
-
-      div.innerHTML = `
-        <pre>${text}</pre>
-        <button onclick="like(this)">❤️ Like</button>
-      `;
-
-      feed.appendChild(div);
-    } catch {
-      console.log("Missing file:", p);
-    }
-  }
-}
-
-function like(btn) {
-  btn.innerText = "❤️ Liked";
-}
-</script>
+<div class="post">
+  <h2>🚀 STM32 Project 1</h2>
+  <p>Motion tracking idea using IMU</p>
+</div>
 
 </body>
 </html>
