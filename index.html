@@ -1,91 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dev Profiles</title>
-
-  <style>
-    body {
-      background: #0f0f0f;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
-
-    h1 {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-
-    .card {
-      background: #1e1e1e;
-      width: 280px;
-      padding: 20px;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .tag {
-      background: #333;
-      padding: 5px 10px;
-      margin: 5px 5px 0 0;
-      display: inline-block;
-      border-radius: 10px;
-      font-size: 12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Dev Profiles</title>
 </head>
 
-<body>
+<body style="background:black; color:white; text-align:center; font-family:Arial;">
 
 <h1>🚀 My Dev Profiles</h1>
 
-<div class="container">
+<h2>🟢 Arduino UNO</h2>
+<p><a href="arduino.html" style="color:lightgreen;">Open Arduino Projects</a></p>
 
-  <div class="card" onclick="openPage('arduino.html')">
-    <h2>🟢 Arduino UNO</h2>
-    <p>Simple and beginner-friendly board.</p>
-
-    <div class="tag">ATmega328P</div>
-    <div class="tag">5V</div>
-    <div class="tag">16MHz</div>
-    <div class="tag">Pin 13 LED</div>
-
-    <p>💡 Best for basic projects & learning.</p>
-  </div>
-
-  <div class="card" onclick="openPage('stm32.html')">
-    <h2>🔵 STM32 Black Pill</h2>
-    <p>Powerful ARM microcontroller.</p>
-
-    <div class="tag">Cortex-M4</div>
-    <div class="tag">84MHz</div>
-    <div class="tag">Low Power</div>
-    <div class="tag">Advanced IO</div>
-
-    <p>⚡ Best for advanced embedded systems.</p>
-  </div>
-
-</div>
-
-<script>
-function openPage(page) {
-  window.location.href = page;
-}
-</script>
+<h2>🔵 STM32 Black Pill</h2>
+<p><a href="stm32.html" style="color:lightblue;">Open STM32 Projects</a></p>
 
 </body>
 </html>
