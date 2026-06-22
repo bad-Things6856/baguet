@@ -2,100 +2,121 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Embedded Lab</title>
+<title>Embedded Systems Lab</title>
 
 <style>
 body {
-  margin: 0;
-  background: #0d1117;
-  color: #e6edf3;
-  font-family: Arial, sans-serif;
+  margin:0;
+  font-family:Arial;
+  background:#0d1117;
+  color:#e6edf3;
+  scroll-behavior:smooth;
 }
 
 /* NAVBAR */
 .nav {
-  background: #161b22;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-bottom: 1px solid #30363d;
+  background:#161b22;
+  padding:15px;
+  text-align:center;
+  font-size:20px;
+  border-bottom:1px solid #30363d;
 }
 
 /* HEADER */
 .header {
-  text-align: center;
-  padding: 40px 20px;
+  text-align:center;
+  padding:40px 20px;
 }
 
 .header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-.header p {
-  color: #8b949e;
+  margin:0;
+  color:#58a6ff;
 }
 
 /* GRID */
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  padding: 20px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+  padding:20px;
 }
 
 /* CARD */
 .card {
-  background: #161b22;
-  width: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #30363d;
-  transition: 0.3s;
+  background:#161b22;
+  width:300px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #30363d;
+  transition:0.3s;
 }
 
 .card:hover {
-  transform: scale(1.03);
-  border-color: #58a6ff;
+  transform:scale(1.05);
+  border-color:#58a6ff;
 }
 
-/* IMAGE */
 .card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+  width:100%;
+  height:180px;
+  object-fit:cover;
 }
 
-/* CONTENT */
 .content {
-  padding: 15px;
+  padding:15px;
 }
 
 .title {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #58a6ff;
+  font-size:18px;
+  color:#58a6ff;
 }
 
 .spec {
-  font-size: 13px;
-  color: #8b949e;
-  margin-bottom: 5px;
+  font-size:13px;
+  color:#8b949e;
 }
 
+/* BUTTON */
 .btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #238636;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 13px;
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 12px;
+  background:#238636;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
 }
 
 .btn:hover {
-  background: #2ea043;
+  background:#2ea043;
+}
+
+/* SECTION */
+.section {
+  max-width:900px;
+  margin:50px auto;
+  padding:20px;
+}
+
+.box {
+  background:#161b22;
+  padding:15px;
+  margin-top:15px;
+  border-radius:8px;
+  border:1px solid #30363d;
+}
+
+h2 {
+  color:#58a6ff;
+}
+
+/* BACK BUTTON */
+.back {
+  display:inline-block;
+  margin-top:20px;
+  color:#58a6ff;
+  text-decoration:none;
 }
 </style>
 
@@ -103,39 +124,154 @@ body {
 
 <body>
 
-<div class="nav">⚡ Embedded Systems Lab</div>
+<div class="nav">⚡som codes of mine </div>
 
 <div class="header">
-  <h1>Projects & Experiments</h1>
-  <p>Arduino • STM32 • Custom Builds</p>
+  <h1>Projects & Hardware</h1>
+  <p>Arduino • STM32 • Embedded Builds</p>
 </div>
 
+<!-- CARDS -->
 <div class="grid">
 
-  <!-- Arduino -->
   <div class="card">
     <img src="Images/Arduino.gif">
     <div class="content">
       <div class="title">Arduino UNO</div>
-      <div class="spec">ATmega328P • 16MHz</div>
-      <div class="spec">32KB Flash • 2KB SRAM</div>
-      <div class="spec">Beginner → Rapid prototyping</div>
-      <a class="btn" href="#">View Projects</a>
+      <div class="spec">Beginner Friendly • Fast Prototyping</div>
+      <a class="btn" href="#arduino">Open</a>
     </div>
   </div>
 
-  <!-- STM32 -->
   <div class="card">
     <img src="Images/Stm32.gif">
     <div class="content">
-      <div class="title">STM32F401 (Black Pill)</div>
-      <div class="spec">Cortex-M4 • 84MHz</div>
-      <div class="spec">256KB Flash • 64KB RAM</div>
-      <div class="spec">Advanced control systems</div>
-      <a class="btn" href="#">View Projects</a>
+      <div class="title">STM32F401</div>
+      <div class="spec">High Performance • Real-Time</div>
+      <a class="btn" href="#stm32">Open</a>
     </div>
   </div>
 
+</div>
+
+<!-- ================= ARDUINO ================= -->
+<div id="arduino" class="section">
+  <h2>🟢 Arduino UNO</h2>
+  <img src="Images/Arduino.gif" style="width:100%;border-radius:10px;">
+
+  <div class="box">
+    <h3>Overview</h3>
+    <p>Arduino UNO is widely used for beginners and rapid prototyping. Ideal for sensor-based projects, automation, and learning embedded systems.</p>
+  </div>
+
+  <div class="box">
+    <h3>Specifications</h3>
+    <ul>
+      <li>ATmega328P</li>
+      <li>16 MHz Clock</li>
+      <li>32KB Flash</li>
+      <li>2KB SRAM</li>
+      <li>14 Digital Pins + 6 Analog</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Library Compatibility</h3>
+    <p>Massive support for sensors, displays, motors, WiFi modules. Plug-and-play ecosystem.</p>
+  </div>
+
+  <div class="box">
+    <h3>Performance</h3>
+    <p>Good for low-speed tasks. Not suitable for heavy computation or real-time processing.</p>
+  </div>
+
+  <div class="box">
+    <h3>Use Cases</h3>
+    <ul>
+      <li>Basic robotics</li>
+      <li>Home automation</li>
+      <li>Sensor interfacing</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Pros</h3>
+    <ul>
+      <li>Very easy</li>
+      <li>Huge community</li>
+      <li>Cheap</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Cons</h3>
+    <ul>
+      <li>Slow</li>
+      <li>Low RAM</li>
+      <li>Limited features</li>
+    </ul>
+  </div>
+
+  <a class="back" href="#">⬆ Back to top</a>
+</div>
+
+<!-- ================= STM32 ================= -->
+<div id="stm32" class="section">
+  <h2>🔵 STM32F401</h2>
+  <img src="Images/Stm32.gif" style="width:100%;border-radius:10px;">
+
+  <div class="box">
+    <h3>Overview</h3>
+    <p>STM32 offers high performance ARM Cortex architecture. Suitable for real-time systems, robotics, and advanced control.</p>
+  </div>
+
+  <div class="box">
+    <h3>Specifications</h3>
+    <ul>
+      <li>Cortex-M4</li>
+      <li>84 MHz Clock</li>
+      <li>256KB Flash</li>
+      <li>64KB RAM</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Library Compatibility</h3>
+    <p>Supports HAL, LL, CMSIS, and Arduino Core. More complex but powerful.</p>
+  </div>
+
+  <div class="box">
+    <h3>Performance</h3>
+    <p>High-speed processing, DMA support, real-time capable.</p>
+  </div>
+
+  <div class="box">
+    <h3>Use Cases</h3>
+    <ul>
+      <li>Robotics</li>
+      <li>RC systems</li>
+      <li>Signal processing</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Pros</h3>
+    <ul>
+      <li>Fast</li>
+      <li>Advanced peripherals</li>
+      <li>Low power modes</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Cons</h3>
+    <ul>
+      <li>Complex setup</li>
+      <li>Debugging needed</li>
+    </ul>
+  </div>
+
+  <a class="back" href="#">⬆ Back to top</a>
 </div>
 
 </body>
