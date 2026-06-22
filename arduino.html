@@ -1,178 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arduino Feed</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d1117;
-  color: #e6edf3;
+  margin:0;
+  font-family:sans-serif;
+  background:#0d1117;
+  color:#e6edf3;
 }
 
-header {
-  text-align: center;
-  padding: 15px;
-  background: #161b22;
-  border-bottom: 1px solid #30363d;
+/* HEADER */
+.header {
+  text-align:center;
+  padding:15px;
+  background:#161b22;
+  position:sticky;
+  top:0;
+  border-bottom:1px solid #30363d;
 }
 
+/* FEED */
 .feed {
-  max-width: 500px;
-  margin: auto;
+  max-width:500px;
+  margin:auto;
 }
 
+/* POST */
 .post {
-  background: #161b22;
-  margin: 20px 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #30363d;
+  margin:20px;
+  background:#161b22;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #30363d;
+  transition:0.3s;
 }
 
+.post:hover {
+  border-color:#58a6ff;
+}
+
+/* IMAGE */
 .post img {
-  width: 100%;
-  display: block;
+  width:100%;
 }
 
+/* CONTENT */
 .content {
-  padding: 12px;
+  padding:12px;
 }
 
 .title {
-  font-weight: bold;
-  color: #58a6ff;
+  color:#58a6ff;
+  font-weight:bold;
 }
 
-.desc {
-  font-size: 13px;
-  color: #8b949e;
+.tag {
+  font-size:11px;
+  background:#21262d;
+  padding:3px 6px;
+  border-radius:5px;
+  margin-right:5px;
 }
 
+/* CODE */
 pre {
-  background: #0d1117;
-  padding: 10px;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 12px;
+  background:#0d1117;
+  padding:10px;
+  border-radius:6px;
+  font-size:12px;
+  overflow-x:auto;
+}
+
+/* BUTTONS */
+.actions {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
 }
 
 button {
-  margin-top: 10px;
-  padding: 6px 10px;
-  background: #21262d;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+  padding:6px 10px;
+  border:none;
+  background:#21262d;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
 }
 
 button:hover {
-  background: #30363d;
+  background:#30363d;
 }
 
+/* BACK */
 .back {
-  text-align: center;
-  margin: 20px;
+  text-align:center;
+  margin:20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  Arduino UNO Feed
-</header>
+<div class="header">🔥 Arduino Projects Feed</div>
 
 <div class="feed">
 
-  <!-- POST 1 -->
-  <div class="post">
-    <img src="./Images/Arduino.gif" alt="LED ON">
-    <div class="content">
-      <div class="title">LED ON</div>
-      <div class="desc">Turn ON built-in LED</div>
+<!-- POST 1 -->
+<div class="post">
+<img src="./images/arduino.gif">
+<div class="content">
+<div class="title">LED ON</div>
+<span class="tag">BASIC</span>
 
-<pre>
-void setup() {
-  pinMode(13, OUTPUT);
+<p>Turn ON built-in LED (Pin 13)</p>
+
+<pre id="code1">
+void setup(){
+ pinMode(13, OUTPUT);
 }
 
-void loop() {
-  digitalWrite(13, HIGH);
-}
-</pre>
-
-      <button onclick="like(this)">❤️ Like</button>
-    </div>
-  </div>
-
-  <!-- POST 2 -->
-  <div class="post">
-    <img src="./Images/Arduino.gif" alt="Blink">
-    <div class="content">
-      <div class="title">LED Blink</div>
-      <div class="desc">Basic blinking</div>
-
-<pre>
-void setup() {
-  pinMode(13, OUTPUT);
-}
-
-void loop() {
-  digitalWrite(13, HIGH);
-  delay(1000);
-  digitalWrite(13, LOW);
-  delay(1000);
+void loop(){
+ digitalWrite(13, HIGH);
 }
 </pre>
 
-      <button onclick="like(this)">❤️ Like</button>
-    </div>
-  </div>
+<div class="actions">
+<button onclick="like(this)">❤️</button>
+<button onclick="copyCode('code1')">📋 Copy</button>
+</div>
+</div>
+</div>
 
-  <!-- POST 3 -->
-  <div class="post">
-    <img src="./Images/Arduino.gif" alt="Custom Blink">
-    <div class="content">
-      <div class="title">Custom Blink</div>
-      <div class="desc">Change speed</div>
+<!-- POST 2 -->
+<div class="post">
+<img src="./images/arduino.gif">
+<div class="content">
+<div class="title">LED Blink</div>
+<span class="tag">CORE</span>
 
-<pre>
+<p>Classic blinking LED</p>
+
+<pre id="code2">
+void setup(){
+ pinMode(13, OUTPUT);
+}
+
+void loop(){
+ digitalWrite(13, HIGH);
+ delay(1000);
+ digitalWrite(13, LOW);
+ delay(1000);
+}
+</pre>
+
+<div class="actions">
+<button onclick="like(this)">❤️</button>
+<button onclick="copyCode('code2')">📋 Copy</button>
+</div>
+</div>
+</div>
+
+<!-- POST 3 -->
+<div class="post">
+<img src="./images/arduino.gif">
+<div class="content">
+<div class="title">Custom Speed</div>
+<span class="tag">CONTROL</span>
+
+<p>Change delay timing</p>
+
+<pre id="code3">
 int t = 200;
 
-void setup() {
-  pinMode(13, OUTPUT);
+void setup(){
+ pinMode(13, OUTPUT);
 }
 
-void loop() {
-  digitalWrite(13, HIGH);
-  delay(t);
-  digitalWrite(13, LOW);
-  delay(t);
+void loop(){
+ digitalWrite(13, HIGH);
+ delay(t);
+ digitalWrite(13, LOW);
+ delay(t);
 }
 </pre>
 
-      <button onclick="like(this)">❤️ Like</button>
-    </div>
-  </div>
+<div class="actions">
+<button onclick="like(this)">❤️</button>
+<button onclick="copyCode('code3')">📋 Copy</button>
+</div>
+</div>
+</div>
 
 </div>
 
 <div class="back">
-  <a href="./index.html">⬅ Back</a>
+<a href="./index.html">⬅ Back</a>
 </div>
 
 <script>
-function like(btn) {
-  if (btn.innerHTML === "❤️ Like") {
-    btn.innerHTML = "❤️ Liked";
-  } else {
-    btn.innerHTML = "❤️ Like";
-  }
+function like(btn){
+ btn.style.color = btn.style.color === "red" ? "white" : "red";
+}
+
+function copyCode(id){
+ let text = document.getElementById(id).innerText;
+ navigator.clipboard.writeText(text);
+ alert("Code copied!");
 }
 </script>
 
