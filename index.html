@@ -2,18 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dev Profiles</title>
+<title>🚀 Lab Feed</title>
+
+<style>
+body {
+  background: #0f0f0f;
+  color: white;
+  font-family: Arial;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #1e1e1e;
+  width: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 15px;
+}
+
+a {
+  color: cyan;
+  text-decoration: none;
+}
+</style>
+
 </head>
 
-<body style="background:black; color:white; text-align:center; font-family:Arial;">
+<body>
 
-<h1>🚀 My Dev Profiles</h1>
+<h1>🚀 My Lab Feed</h1>
 
-<h2>🟢 Arduino UNO</h2>
-<p><a href="arduino.html" style="color:lightgreen;">Open Arduino Projects</a></p>
+<div class="container">
 
-<h2>🔵 STM32 Black Pill</h2>
-<p><a href="stm32.html" style="color:lightblue;">Open STM32 Projects</a></p>
+  <!-- Arduino -->
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg">
+    <div class="content">
+      <h2>🟢 Arduino UNO</h2>
+      <p>Simple builds, sensors, quick ideas.</p>
+      <p>💡 "Start simple. Build fast."</p>
+      <a href="arduino.html">Open Projects →</a>
+    </div>
+  </div>
+
+  <!-- STM32 -->
+  <div class="card">
+    <img src="https://stm32-base.org/assets/img/boards/STM32F401CCU6_black_pill.jpg">
+    <div class="content">
+      <h2>🔵 STM32 Lab</h2>
+      <p>High-performance embedded systems.</p>
+      <p>⚡ "Speed + Control = Power"</p>
+      <a href="stm32.html">Open Projects →</a>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
