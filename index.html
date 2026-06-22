@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>🚀 Lab Feed</title>
+<title>⚡ Lab Feed</title>
 
 <style>
 body {
-  background: #0f0f0f;
-  color: white;
-  font-family: Arial;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: Consolas, monospace;
   margin: 0;
 }
 
 h1 {
   text-align: center;
   padding: 20px;
+  color: #58a6ff;
 }
 
 .container {
@@ -26,15 +27,17 @@ h1 {
 }
 
 .card {
-  background: #1e1e1e;
-  width: 300px;
-  border-radius: 15px;
+  background: #161b22;
+  width: 340px;
+  border-radius: 12px;
   overflow: hidden;
+  border: 1px solid #30363d;
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  border-color: #58a6ff;
 }
 
 .card img {
@@ -47,39 +50,72 @@ h1 {
   padding: 15px;
 }
 
+.title {
+  font-size: 20px;
+  color: #58a6ff;
+}
+
+.spec {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.quote {
+  font-style: italic;
+  color: #8b949e;
+  margin-top: 10px;
+}
+
 a {
-  color: cyan;
+  display: inline-block;
+  margin-top: 10px;
+  color: #58a6ff;
   text-decoration: none;
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>🚀 My Lab Feed</h1>
+<h1>⚡ Embedded Lab Feed</h1>
 
 <div class="container">
 
-  <!-- Arduino -->
+  <!-- Arduino Card -->
   <div class="card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg">
+    <img src="Images/arduino.gif">
     <div class="content">
-      <h2>🟢 Arduino UNO</h2>
-      <p>Simple builds, sensors, quick ideas.</p>
-      <p>💡 "Start simple. Build fast."</p>
-      <a href="arduino.html">Open Projects →</a>
+      <div class="title">🟢 Arduino UNO</div>
+
+      <div class="spec">MCU: ATmega328P</div>
+      <div class="spec">Clock: 16 MHz</div>
+      <div class="spec">Logic Level: 5V</div>
+      <div class="spec">Flash: 32KB</div>
+      <div class="spec">SRAM: 2KB</div>
+      <div class="spec">GPIO: 14 Digital, 6 Analog</div>
+
+      <div class="quote">"Prototype fast. Learn faster."</div>
+
+      <a href="arduino.html">→ Open Projects</a>
     </div>
   </div>
 
-  <!-- STM32 -->
+  <!-- STM32 Card -->
   <div class="card">
-    <img src="https://stm32-base.org/assets/img/boards/STM32F401CCU6_black_pill.jpg">
+    <img src="Images/stm32.gif">
     <div class="content">
-      <h2>🔵 STM32 Lab</h2>
-      <p>High-performance embedded systems.</p>
-      <p>⚡ "Speed + Control = Power"</p>
-      <a href="stm32.html">Open Projects →</a>
+      <div class="title">🔵 STM32 Black Pill</div>
+
+      <div class="spec">MCU: STM32F401CCU6</div>
+      <div class="spec">Core: ARM Cortex-M4</div>
+      <div class="spec">Clock: 84 MHz</div>
+      <div class="spec">Flash: 256KB</div>
+      <div class="spec">SRAM: 64KB</div>
+      <div class="spec">Interfaces: SPI, I2C, UART, ADC</div>
+
+      <div class="quote">"Precision control. Real power."</div>
+
+      <a href="stm32.html">→ Open Projects</a>
     </div>
   </div>
 
