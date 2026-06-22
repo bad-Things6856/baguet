@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Dev Profiles</title>
 
   <style>
     body {
       background: #0f0f0f;
       color: white;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       margin: 0;
     }
 
@@ -21,15 +22,16 @@
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      padding: 20px;
     }
 
     .card {
       background: #1e1e1e;
-      width: 300px;
+      width: 280px;
       padding: 20px;
       border-radius: 15px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.2s;
     }
 
     .card:hover {
@@ -39,7 +41,7 @@
     .tag {
       background: #333;
       padding: 5px 10px;
-      margin: 5px;
+      margin: 5px 5px 0 0;
       display: inline-block;
       border-radius: 10px;
       font-size: 12px;
@@ -53,38 +55,36 @@
 
 <div class="container">
 
-  <!-- Arduino Profile -->
   <div class="card" onclick="openPage('arduino.html')">
     <h2>🟢 Arduino UNO</h2>
-    <p>Beginner-friendly board for quick prototyping.</p>
+    <p>Simple and beginner-friendly board.</p>
 
     <div class="tag">ATmega328P</div>
-    <div class="tag">5V Logic</div>
-    <div class="tag">Easy IDE</div>
-    <div class="tag">Built-in LED</div>
+    <div class="tag">5V</div>
+    <div class="tag">16MHz</div>
+    <div class="tag">Pin 13 LED</div>
 
-    <p>💡 Perfect for learning, sensors, small robots.</p>
+    <p>💡 Best for basic projects & learning.</p>
   </div>
 
-  <!-- STM32 Profile -->
   <div class="card" onclick="openPage('stm32.html')">
     <h2>🔵 STM32 Black Pill</h2>
-    <p>Powerful ARM-based microcontroller.</p>
+    <p>Powerful ARM microcontroller.</p>
 
     <div class="tag">Cortex-M4</div>
-    <div class="tag">High Speed</div>
+    <div class="tag">84MHz</div>
     <div class="tag">Low Power</div>
-    <div class="tag">Advanced Peripherals</div>
+    <div class="tag">Advanced IO</div>
 
-    <p>⚡ Best for high-performance projects & control systems.</p>
+    <p>⚡ Best for advanced embedded systems.</p>
   </div>
 
 </div>
 
 <script>
-  function openPage(page) {
-    window.location.href = page;
-  }
+function openPage(page) {
+  window.location.href = page;
+}
 </script>
 
 </body>
