@@ -5,79 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LED ON - Arduino</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d1117;
-  color: white;
-}
-
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 15px;
-  background: #161b22;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* CONTAINER */
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
-}
-
-/* IMAGE */
-.image-box img {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #30363d;
-}
-
-/* TEXT */
-h1 {
-  color: #58a6ff;
-}
-
-p {
-  color: #c9d1d9;
-}
-
-/* CODE BLOCK */
-pre {
-  background: #161b22;
-  padding: 15px;
-  border-radius: 8px;
-  overflow-x: auto;
-  border: 1px solid #30363d;
-}
-
-/* BUTTON */
-button {
-  margin-top: 10px;
-  background: #21262d;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #30363d;
-}
-
-/* BACK LINK */
-.back {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  color: #58a6ff;
-}
-</style>
-
+<link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
@@ -86,27 +14,23 @@ button:hover {
 
 <div class="container">
 
-  <h1>LED ON (Built-in)</h1>
+<h1 class="title">LED ON (Built-in)</h1>
 
-  <div class="image-box">
-    <!-- PNG IMAGE -->
-    <img src="../images/led-on.png" alt="LED ON">
-  </div>
+<img src="../images/led-on.png" style="width:100%; border-radius:10px;">
 
-  <p>
-    This program turns ON the built-in LED on your Arduino board 
-    (usually connected to pin 13).
-  </p>
+<p class="desc">
+This program turns ON the built-in LED on Arduino (Pin 13).
+</p>
 
-  <h3>📌 How it works</h3>
-  <p>
-    - Set pin 13 as OUTPUT  
-    - Send HIGH signal → LED turns ON  
-  </p>
+<h3>📌 How it works</h3>
+<p class="desc">
+- Set pin 13 as OUTPUT <br>
+- Send HIGH signal → LED turns ON
+</p>
 
-  <h3>💻 Code</h3>
+<h3>💻 Code</h3>
 
-  <pre id="codeBlock">
+<pre id="code">
 void setup() {
   pinMode(13, OUTPUT);
 }
@@ -114,19 +38,18 @@ void setup() {
 void loop() {
   digitalWrite(13, HIGH);
 }
-  </pre>
+</pre>
 
-  <button onclick="copyCode()">📋 Copy Code</button>
+<button onclick="copyCode()">📋 Copy Code</button>
 
-  <br>
-
-  <a href="../arduino.html" class="back">⬅ Back to Feed</a>
+<br><br>
+<a href="../arduino.html">⬅ Back to Feed</a>
 
 </div>
 
 <script>
 function copyCode() {
-  const text = document.getElementById("codeBlock").innerText;
+  const text = document.getElementById("code").innerText;
   navigator.clipboard.writeText(text);
   alert("Code copied!");
 }
