@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fade LED</title>
+<style>
+body{background:#0d1117;color:white;font-family:Arial;padding:20px;}
+pre{background:#161b22;padding:15px;border-radius:8px;}
+</style>
+</head>
+
+<body>
+
+<h1>Fade LED (PWM)</h1>
+
+<p>Smooth brightness change using PWM</p>
+
+<pre id="code">
+int led = 9;
+int brightness = 0;
+int fade = 5;
+
+void setup(){
+  pinMode(led, OUTPUT);
+}
+
+void loop(){
+  analogWrite(led, brightness);
+  brightness += fade;
+
+  if(brightness <= 0 || brightness >= 255){
+    fade = -fade;
+  }
+
+  delay(30);
+}
+</pre>
+
+<button onclick="copy()">Copy</button>
+<br><br>
+<a href="../arduino.html">Back</a>
+
+<script>
+function copy(){
+navigator.clipboard.writeText(document.getElementById("code").innerText);
+}
+</script>
+
+</body>
+</html>
