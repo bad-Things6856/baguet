@@ -5,97 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arduino Feed</title>
 
+<link rel="stylesheet" href="styles/style.css">
+
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d1117;
-  color: white;
+
+/* NAVBAR */
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+  background:#161b22;
+  border-bottom:1px solid #30363d;
 }
 
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 15px;
-  font-size: 22px;
-  font-weight: bold;
-  background: #161b22;
-  border-bottom: 1px solid #30363d;
+.logo {
+  font-size:20px;
+  font-weight:bold;
+  color:#58a6ff;
 }
 
-/* FEED */
-.feed {
-  max-width: 500px;
-  margin: auto;
-  padding: 10px;
+.search {
+  padding:6px;
+  border-radius:6px;
+  border:none;
+  background:#0d1117;
+  color:white;
 }
 
-/* POST */
-.post {
-  background: #161b22;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #30363d;
-  cursor: pointer;
-  transition: 0.2s;
+/* FILTERS */
+.filters {
+  display:flex;
+  gap:10px;
+  padding:10px;
+  justify-content:center;
 }
 
-.post:hover {
-  transform: scale(1.02);
+.filter-btn {
+  background:#21262d;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
 }
 
-/* IMAGE */
-.post img {
-  width: 100%;
-  display: block;
+.filter-btn:hover {
+  background:#30363d;
 }
 
-/* CONTENT */
-.content {
-  padding: 12px;
+/* FOOTER */
+.footer {
+  text-align:center;
+  padding:20px;
+  color:#888;
 }
 
-.title {
-  color: #58a6ff;
-  font-weight: bold;
-}
-
-.desc {
-  color: #c9d1d9;
-  font-size: 14px;
-}
-
-/* ACTIONS */
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-button {
-  background: #21262d;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #30363d;
-}
 </style>
+
 </head>
 
 <body>
 
-<div class="header">⚡ Arduino Projects Feed</div>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">⚡ Arduino Hub</div>
+  <input class="search" placeholder="Search projects..." onkeyup="searchPost(this.value)">
+</div>
 
-<div class="feed">
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn" onclick="filter('all')">All</button>
+  <button class="filter-btn" onclick="filter('basic')">Basic</button>
+  <button class="filter-btn" onclick="filter('input')">Input</button>
+  <button class="filter-btn" onclick="filter('pwm')">PWM</button>
+</div>
+
+<!-- FEED -->
+<div class="feed" id="feed">
 
 <!-- LED ON -->
-<div class="post" onclick="openPage('pages/led-on.html')">
+<div class="post basic" data-name="led on" onclick="openPage('pages/led-on.html')">
 <img src="images/led-on.png">
 <div class="content">
 <div class="title">LED ON</div>
@@ -108,7 +97,7 @@ button:hover {
 </div>
 
 <!-- BLINK -->
-<div class="post" onclick="openPage('pages/blink.html')">
+<div class="post basic" data-name="blink" onclick="openPage('pages/blink.html')">
 <img src="images/blink.gif">
 <div class="content">
 <div class="title">Blink</div>
@@ -120,12 +109,12 @@ button:hover {
 </div>
 </div>
 
-<!-- CUSTOM BLINK -->
-<div class="post" onclick="openPage('pages/custom-blink.html')">
-<img src="images/blink.gif">
+<!-- BUTTON -->
+<div class="post input" data-name="button led" onclick="openPage('pages/button-led.html')">
+<img src="images/button.gif">
 <div class="content">
-<div class="title">Custom Blink</div>
-<div class="desc">Control speed of blinking</div>
+<div class="title">Button LED</div>
+<div class="desc">Control LED using button</div>
 
 <div class="actions">
 <button onclick="like(event,'p3')">❤️ <span id="p3">0</span></button>
@@ -133,12 +122,12 @@ button:hover {
 </div>
 </div>
 
-<!-- BUTTON LED -->
-<div class="post" onclick="openPage('pages/button-led.html')">
-<img src="images/button.gif">
+<!-- FADE -->
+<div class="post pwm" data-name="fade led" onclick="openPage('pages/fade-led.html')">
+<img src="images/fade.gif">
 <div class="content">
-<div class="title">Button LED</div>
-<div class="desc">Control LED with button</div>
+<div class="title">Fade LED</div>
+<div class="desc">Smooth PWM brightness</div>
 
 <div class="actions">
 <button onclick="like(event,'p4')">❤️ <span id="p4">0</span></button>
@@ -146,29 +135,21 @@ button:hover {
 </div>
 </div>
 
-<!-- FADE LED -->
-<div class="post" onclick="openPage('pages/fade-led.html')">
-<img src="images/fade.gif">
-<div class="content">
-<div class="title">Fade LED</div>
-<div class="desc">PWM brightness control</div>
-
-<div class="actions">
-<button onclick="like(event,'p5')">❤️ <span id="p5">0</span></button>
-</div>
-</div>
 </div>
 
+<!-- FOOTER -->
+<div class="footer">
+  🚀 Built by you | Arduino + STM32 Projects
 </div>
 
 <script>
 
-/* OPEN PAGE */
+// OPEN PAGE
 function openPage(page){
   window.location.href = page;
 }
 
-/* LIKE SYSTEM */
+// LIKE SYSTEM
 function like(e,id){
   e.stopPropagation();
 
@@ -179,11 +160,39 @@ function like(e,id){
   document.getElementById(id).innerText = count;
 }
 
-/* LOAD SAVED LIKES */
+// LOAD LIKES
 window.onload = function(){
-  ['p1','p2','p3','p4','p5'].forEach(id=>{
-    let val = localStorage.getItem(id) || 0;
-    document.getElementById(id).innerText = val;
+  ['p1','p2','p3','p4'].forEach(id=>{
+    document.getElementById(id).innerText =
+      localStorage.getItem(id) || 0;
+  });
+}
+
+// FILTER SYSTEM
+function filter(type){
+  let posts = document.querySelectorAll(".post");
+
+  posts.forEach(p=>{
+    if(type === "all"){
+      p.style.display = "block";
+    } else {
+      p.style.display = p.classList.contains(type) ? "block" : "none";
+    }
+  });
+}
+
+// SEARCH SYSTEM
+function searchPost(text){
+  text = text.toLowerCase();
+
+  document.querySelectorAll(".post").forEach(p=>{
+    let name = p.getAttribute("data-name");
+
+    if(name.includes(text)){
+      p.style.display = "block";
+    } else {
+      p.style.display = "none";
+    }
   });
 }
 
