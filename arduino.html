@@ -1,214 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arduino Feed</title>
 
 <style>
 body {
-  margin:0;
-  font-family:sans-serif;
-  background:#0d1117;
-  color:#e6edf3;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: white;
 }
 
 /* HEADER */
 .header {
-  text-align:center;
-  padding:15px;
-  background:#161b22;
-  position:sticky;
-  top:0;
-  border-bottom:1px solid #30363d;
+  text-align: center;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
 }
 
 /* FEED */
 .feed {
-  max-width:500px;
-  margin:auto;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
 }
 
 /* POST */
 .post {
-  margin:20px;
-  background:#161b22;
-  border-radius:12px;
-  overflow:hidden;
-  border:1px solid #30363d;
-  transition:0.3s;
+  background: #161b22;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .post:hover {
-  border-color:#58a6ff;
+  transform: scale(1.02);
 }
 
 /* IMAGE */
 .post img {
-  width:100%;
+  width: 100%;
+  display: block;
 }
 
 /* CONTENT */
 .content {
-  padding:12px;
+  padding: 12px;
 }
 
 .title {
-  color:#58a6ff;
-  font-weight:bold;
+  color: #58a6ff;
+  font-weight: bold;
 }
 
-.tag {
-  font-size:11px;
-  background:#21262d;
-  padding:3px 6px;
-  border-radius:5px;
-  margin-right:5px;
+.desc {
+  color: #c9d1d9;
+  font-size: 14px;
 }
 
-/* CODE */
-pre {
-  background:#0d1117;
-  padding:10px;
-  border-radius:6px;
-  font-size:12px;
-  overflow-x:auto;
-}
-
-/* BUTTONS */
+/* ACTIONS */
 .actions {
-  display:flex;
-  gap:10px;
-  margin-top:10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 button {
-  padding:6px 10px;
-  border:none;
-  background:#21262d;
-  color:white;
-  border-radius:6px;
-  cursor:pointer;
+  background: #21262d;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 button:hover {
-  background:#30363d;
-}
-
-/* BACK */
-.back {
-  text-align:center;
-  margin:20px;
+  background: #30363d;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">🔥 Arduino Projects Feed</div>
+<div class="header">⚡ Arduino Projects Feed</div>
 
 <div class="feed">
 
-<!-- POST 1 -->
-<div class="post">
-<img src="./images/arduino.gif">
+<!-- LED ON -->
+<div class="post" onclick="openPage('pages/led-on.html')">
+<img src="images/led-on.png">
 <div class="content">
 <div class="title">LED ON</div>
-<span class="tag">BASIC</span>
-
-<p>Turn ON built-in LED (Pin 13)</p>
-
-<pre id="code1">
-void setup(){
- pinMode(13, OUTPUT);
-}
-
-void loop(){
- digitalWrite(13, HIGH);
-}
-</pre>
+<div class="desc">Turn ON built-in LED</div>
 
 <div class="actions">
-<button onclick="like(this)">❤️</button>
-<button onclick="copyCode('code1')">📋 Copy</button>
+<button onclick="like(event,'p1')">❤️ <span id="p1">0</span></button>
 </div>
 </div>
 </div>
 
-<!-- POST 2 -->
-<div class="post">
-<img src="./images/arduino.gif">
+<!-- BLINK -->
+<div class="post" onclick="openPage('pages/blink.html')">
+<img src="images/blink.gif">
 <div class="content">
-<div class="title">LED Blink</div>
-<span class="tag">CORE</span>
-
-<p>Classic blinking LED</p>
-
-<pre id="code2">
-void setup(){
- pinMode(13, OUTPUT);
-}
-
-void loop(){
- digitalWrite(13, HIGH);
- delay(1000);
- digitalWrite(13, LOW);
- delay(1000);
-}
-</pre>
+<div class="title">Blink</div>
+<div class="desc">Basic LED blinking</div>
 
 <div class="actions">
-<button onclick="like(this)">❤️</button>
-<button onclick="copyCode('code2')">📋 Copy</button>
+<button onclick="like(event,'p2')">❤️ <span id="p2">0</span></button>
 </div>
 </div>
 </div>
 
-<!-- POST 3 -->
-<div class="post">
-<img src="./images/arduino.gif">
+<!-- CUSTOM BLINK -->
+<div class="post" onclick="openPage('pages/custom-blink.html')">
+<img src="images/blink.gif">
 <div class="content">
-<div class="title">Custom Speed</div>
-<span class="tag">CONTROL</span>
-
-<p>Change delay timing</p>
-
-<pre id="code3">
-int t = 200;
-
-void setup(){
- pinMode(13, OUTPUT);
-}
-
-void loop(){
- digitalWrite(13, HIGH);
- delay(t);
- digitalWrite(13, LOW);
- delay(t);
-}
-</pre>
+<div class="title">Custom Blink</div>
+<div class="desc">Control speed of blinking</div>
 
 <div class="actions">
-<button onclick="like(this)">❤️</button>
-<button onclick="copyCode('code3')">📋 Copy</button>
+<button onclick="like(event,'p3')">❤️ <span id="p3">0</span></button>
 </div>
 </div>
 </div>
 
+<!-- BUTTON LED -->
+<div class="post" onclick="openPage('pages/button-led.html')">
+<img src="images/button.gif">
+<div class="content">
+<div class="title">Button LED</div>
+<div class="desc">Control LED with button</div>
+
+<div class="actions">
+<button onclick="like(event,'p4')">❤️ <span id="p4">0</span></button>
+</div>
+</div>
 </div>
 
-<div class="back">
-<a href="./index.html">⬅ Back</a>
+<!-- FADE LED -->
+<div class="post" onclick="openPage('pages/fade-led.html')">
+<img src="images/fade.gif">
+<div class="content">
+<div class="title">Fade LED</div>
+<div class="desc">PWM brightness control</div>
+
+<div class="actions">
+<button onclick="like(event,'p5')">❤️ <span id="p5">0</span></button>
+</div>
+</div>
+</div>
+
 </div>
 
 <script>
-function like(btn){
- btn.style.color = btn.style.color === "red" ? "white" : "red";
+
+/* OPEN PAGE */
+function openPage(page){
+  window.location.href = page;
 }
 
-function copyCode(id){
- let text = document.getElementById(id).innerText;
- navigator.clipboard.writeText(text);
- alert("Code copied!");
+/* LIKE SYSTEM */
+function like(e,id){
+  e.stopPropagation();
+
+  let count = localStorage.getItem(id) || 0;
+  count++;
+
+  localStorage.setItem(id,count);
+  document.getElementById(id).innerText = count;
 }
+
+/* LOAD SAVED LIKES */
+window.onload = function(){
+  ['p1','p2','p3','p4','p5'].forEach(id=>{
+    let val = localStorage.getItem(id) || 0;
+    document.getElementById(id).innerText = val;
+  });
+}
+
 </script>
 
 </body>
