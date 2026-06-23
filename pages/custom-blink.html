@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Custom Blink</title>
+<style>
+body{background:#0d1117;color:white;font-family:Arial;padding:20px;}
+pre{background:#161b22;padding:15px;border-radius:8px;}
+button{background:#21262d;color:white;border:none;padding:8px;}
+</style>
+</head>
+
+<body>
+
+<h1>Custom Blink Speed</h1>
+<img src="../images/blink.gif" style="width:100%;border-radius:10px;">
+
+<p>Control LED speed by changing delay time.</p>
+
+<pre id="code">
+int time = 200;
+
+void setup(){
+  pinMode(13, OUTPUT);
+}
+
+void loop(){
+  digitalWrite(13, HIGH);
+  delay(time);
+  digitalWrite(13, LOW);
+  delay(time);
+}
+</pre>
+
+<button onclick="copy()">Copy</button>
+<br><br>
+<a href="../arduino.html">Back</a>
+
+<script>
+function copy(){
+navigator.clipboard.writeText(document.getElementById("code").innerText);
+}
+</script>
+
+</body>
+</html>
