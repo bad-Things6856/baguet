@@ -34,7 +34,7 @@ body {
   font-weight: 600;
 }
 
-/* Profiles (like stories) */
+/* Profiles */
 .profiles {
   display: flex;
   gap: 15px;
@@ -90,8 +90,10 @@ body {
   height: 180px;
   object-fit: cover;
   background: #222;
+  display: block;
 }
 
+/* Content */
 .card-content {
   padding: 12px;
 }
@@ -118,27 +120,27 @@ body {
 <!-- Profiles -->
 <div class="profiles">
   <div class="profile" onclick="filterProjects('esp32')">
-    <img src="./assets/esp32.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/60'">
     <span>ESP32</span>
   </div>
 
   <div class="profile" onclick="filterProjects('stm32')">
-    <img src="./assets/stm32.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <img src="./images/stm32.gif" onerror="this.src='https://via.placeholder.com/60'">
     <span>STM32</span>
   </div>
 
   <div class="profile" onclick="filterProjects('arduino')">
-    <img src="./assets/arduino.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <img src="./images/arduino.gif" onerror="this.src='https://via.placeholder.com/60'">
     <span>Arduino</span>
   </div>
 </div>
 
 <!-- Feed -->
-<div class="feed" id="feed">
+<div class="feed">
 
   <!-- ESP32 -->
   <div class="card" data-type="esp32" onclick="openProject('project1.html')">
-    <img src="./assets/esp32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
     <div class="card-content">
       <div class="card-title">ESP32 Web Control</div>
       <div class="card-desc">Control devices via web</div>
@@ -147,19 +149,19 @@ body {
 
   <!-- STM32 -->
   <div class="card" data-type="stm32" onclick="openProject('project2.html')">
-    <img src="./assets/stm32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/stm32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
     <div class="card-content">
       <div class="card-title">STM32 RC System</div>
-      <div class="card-desc">Custom RF communication system</div>
+      <div class="card-desc">Custom RF communication</div>
     </div>
   </div>
 
   <!-- Arduino -->
   <div class="card" data-type="arduino" onclick="openProject('project3.html')">
-    <img src="./assets/arduino.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/arduino.gif" onerror="this.src='https://via.placeholder.com/300x180'">
     <div class="card-content">
       <div class="card-title">Arduino Sensor</div>
-      <div class="card-desc">Automation using sensors</div>
+      <div class="card-desc">Sensor automation</div>
     </div>
   </div>
 
