@@ -1,67 +1,244 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>STM32 Feed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STM32 Wiki</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin:0;
-  background:#0d1117;
-  color:white;
-  font-family:sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-.header {
-  text-align:center;
-  padding:15px;
-  background:#161b22;
-}
+body{background:#0f0f0f;color:#fff;line-height:1.6;}
 
-.container {
-  max-width:500px;
-  margin:auto;
+.container{max-width:1000px;margin:auto;padding:25px;}
+
+h1,h2{color:#00ffcc;margin-bottom:10px;}
+
+.card{
+  background:#181818;
   padding:20px;
+  border-radius:12px;
+  border:1px solid #222;
+  margin-bottom:25px;
 }
 
-.card {
-  background:#161b22;
-  border:1px solid #30363d;
-  border-radius:10px;
-  padding:15px;
+code, pre{
+  background:#000;
+  padding:12px;
+  display:block;
+  border-radius:8px;
+  overflow:auto;
+  margin-top:10px;
 }
 
-.title {
-  color:#58a6ff;
-}
-
-pre {
-  background:#0d1117;
-  padding:10px;
-  border-radius:6px;
-  overflow-x:auto;
-}
+ul{margin-left:20px;}
 </style>
 </head>
 
 <body>
 
-<div class="header">⚡ STM32 Feed</div>
-
 <div class="container">
 
-<div class="card">
-<h3 class="title">GPIO Toggle (HAL)</h3>
+<h1>⚡ STM32 Microcontroller</h1>
 
+<div class="card">
+<h2>Overview</h2>
+<p>STM32 is a family of 32-bit ARM Cortex microcontrollers developed by STMicroelectronics. It is widely used in embedded systems, robotics, industrial automation, and IoT.</p>
+
+<ul>
+<li>ARM Cortex-M core (M0, M3, M4, M7)</li>
+<li>High performance (up to 480MHz)</li>
+<li>Low power consumption</li>
+<li>Rich peripherals</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Popular Boards</h2>
+<ul>
+<li>STM32F103C8T6 (Blue Pill)</li>
+<li>STM32F401CCU6</li>
+<li>STM32F407 Discovery</li>
+<li>STM32 Nucleo series</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Applications</h2>
+<ul>
+<li>Robotics & automation</li>
+<li>Flight controllers (drones)</li>
+<li>Motor control</li>
+<li>IoT devices</li>
+<li>Medical electronics</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Pin Functions (Example: STM32F103)</h2>
+<ul>
+<li>GPIOA, GPIOB, GPIOC → Digital I/O</li>
+<li>ADC → PA0–PA7, PB0–PB1</li>
+<li>UART → PA9 (TX), PA10 (RX)</li>
+<li>I2C → PB6 (SCL), PB7 (SDA)</li>
+<li>SPI → PA5, PA6, PA7</li>
+<li>PWM → Most GPIO pins</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Important Notes</h2>
+<ul>
+<li>3.3V logic ONLY</li>
+<li>Some pins are 5V tolerant</li>
+<li>Use proper clock configuration</li>
+<li>Boot0 pin selects programming mode</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Development Methods</h2>
+<ul>
+<li>Arduino IDE (easy)</li>
+<li>STM32CubeIDE (professional)</li>
+<li>PlatformIO (advanced)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Setup (Arduino IDE)</h2>
 <pre>
-HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-HAL_Delay(500);
+File > Preferences
+
+Add URL:
+https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
 </pre>
 
+<pre>
+Tools > Board Manager
+Install STM32 boards
+</pre>
 </div>
+
+<div class="card">
+<h2>Upload Methods</h2>
+
+<h3>1. ST-Link (Recommended)</h3>
+<ul>
+<li>Connect SWDIO, SWCLK, GND, 3.3V</li>
+<li>Use STM32CubeProgrammer</li>
+</ul>
+
+<h3>2. USB (Serial Bootloader)</h3>
+<ul>
+<li>Set BOOT0 = HIGH</li>
+<li>Upload via USB</li>
+<li>Set BOOT0 back to LOW</li>
+</ul>
+
+<h3>3. UART Upload</h3>
+<ul>
+<li>Use USB-TTL converter</li>
+<li>TX ↔ RX connection</li>
+</ul>
 
 </div>
 
-<a href="./index.html">⬅ Back</a>
+<div class="card">
+<h2>Basic Blink Code</h2>
+<pre>
+void setup() {
+  pinMode(PC13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(PC13, LOW);
+  delay(1000);
+  digitalWrite(PC13, HIGH);
+  delay(1000);
+}
+</pre>
+</div>
+
+<div class="card">
+<h2>Serial Communication</h2>
+<pre>
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("Hello STM32");
+  delay(1000);
+}
+</pre>
+</div>
+
+<div class="card">
+<h2>Libraries</h2>
+<ul>
+<li>STM32duino core</li>
+<li>Wire (I2C)</li>
+<li>SPI</li>
+<li>Servo</li>
+<li>STM32LowPower</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Modules Support</h2>
+<ul>
+<li>MPU6050 (IMU)</li>
+<li>NRF24L01</li>
+<li>OLED (SSD1306)</li>
+<li>GPS modules</li>
+<li>Motor drivers (L298N)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Advanced Features</h2>
+<ul>
+<li>DMA (Direct Memory Access)</li>
+<li>Timers (very powerful)</li>
+<li>Interrupts</li>
+<li>RTOS (FreeRTOS)</li>
+<li>Low power modes</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Pros</h2>
+<ul>
+<li>Very powerful</li>
+<li>Cheap</li>
+<li>Industrial grade</li>
+<li>Flexible peripherals</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Cons</h2>
+<ul>
+<li>Complex for beginners</li>
+<li>Setup takes time</li>
+<li>Documentation heavy</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Tips</h2>
+<ul>
+<li>Always check pinout for your exact board</li>
+<li>Use ST-Link for reliable upload</li>
+<li>Use CubeIDE for advanced projects</li>
+<li>Avoid wrong voltage (can damage MCU)</li>
+</ul>
+</div>
+
+</div>
 
 </body>
 </html>
