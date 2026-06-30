@@ -1,48 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ESP32 Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESP32-S3 XIAO</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{background:#0f0f0f;color:#fff;line-height:1.6;}
+
+.container{max-width:1000px;margin:auto;padding:25px;}
+
+h1,h2{color:#00ffcc;margin-bottom:10px;}
+section{margin-bottom:30px;}
+
+.card{
+  background:#181818;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #222;
+}
+
+code, pre{
+  background:#000;
+  padding:10px;
+  display:block;
+  border-radius:8px;
+  overflow:auto;
+  margin-top:10px;
+}
+
+ul{margin-left:20px;}
+
+</style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>⚡ ESP32</h1>
-    <button onclick="goBack()">⬅ Back</button>
-</div>
+<div class="container">
 
-<div class="profile">
+<h1>⚡ ESP32-S3 XIAO</h1>
 
-    <img src="images/esp32s3.png" class="profile-img">
+<section class="card">
+<h2>Overview</h2>
+<p>ESP32 is a powerful microcontroller with built-in WiFi and Bluetooth. It is widely used for IoT systems, embedded control, and automation projects.</p>
+<ul>
+<li>Dual-core processor up to 240MHz</li>
+<li>WiFi + Bluetooth (BLE)</li>
+<li>Low power modes</li>
+<li>Multiple GPIO pins</li>
+</ul>
+</section>
 
-    <h2>XIAO ESP32-S3</h2>
+<section class="card">
+<h2>Applications</h2>
+<ul>
+<li>Smart home automation</li>
+<li>Wireless sensor networks</li>
+<li>IoT dashboards</li>
+<li>Robotics</li>
+<li>Wearables</li>
+</ul>
+</section>
 
-    <p>Small but powerful ESP32 board with WiFi, BLE and USB support.</p>
+<section class="card">
+<h2>Pin Functions</h2>
+<ul>
+<li>GPIO0–39 → Digital I/O</li>
+<li>GPIO32–39 → ADC</li>
+<li>GPIO25,26 → DAC</li>
+<li>I2C → 21 (SDA), 22 (SCL)</li>
+<li>SPI → 18,19,23,5</li>
+<li>UART → TX (1), RX (3)</li>
+</ul>
+</section>
 
-    <ul>
-        <li>ESP32-S3 (Xtensa LX7)</li>
-        <li>WiFi + BLE</li>
-        <li>USB-C (native USB)</li>
-        <li>Ultra compact size</li>
-        <li>Perfect for IoT & wearables</li>
-    </ul>
+<section class="card">
+<h2>Important Notes</h2>
+<ul>
+<li>GPIO34–39 are input only</li>
+<li>GPIO6–11 reserved</li>
+<li>Boot pins must be used carefully</li>
+</ul>
+</section>
 
-    <button onclick="openProjects()">View ESP32 Projects</button>
+<section class="card">
+<h2>Setup (Arduino IDE)</h2>
+<pre>
+File > Preferences
+Add:
+https://dl.espressif.com/dl/package_esp32_index.json
+</pre>
 
-</div>
+<pre>
+Tools > Board Manager
+Install ESP32
+</pre>
+</section>
 
-<script>
-function goBack() {
-    window.history.back();
+<section class="card">
+<h2>Upload Steps</h2>
+<ul>
+<li>Select Board</li>
+<li>Select COM Port</li>
+<li>Click Upload</li>
+<li>Hold BOOT if needed</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Basic Blink Code</h2>
+<pre>
+void setup() {
+  pinMode(2, OUTPUT);
 }
 
-function openProjects() {
-    window.location.href = "index.html?filter=esp32";
+void loop() {
+  digitalWrite(2, HIGH);
+  delay(1000);
+  digitalWrite(2, LOW);
+  delay(1000);
 }
-</script>
+</pre>
+</section>
+
+<section class="card">
+<h2>WiFi Example</h2>
+<pre>
+#include &lt;WiFi.h&gt;
+
+const char* ssid = "YOUR_WIFI";
+const char* password = "PASSWORD";
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("Connected");
+}
+
+void loop() {}
+</pre>
+</section>
+
+<section class="card">
+<h2>Libraries</h2>
+<ul>
+<li>WiFi.h</li>
+<li>BluetoothSerial.h</li>
+<li>ESPAsyncWebServer.h</li>
+<li>DHT.h</li>
+<li>Servo.h</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Modules</h2>
+<ul>
+<li>DHT11/DHT22</li>
+<li>OLED display</li>
+<li>Ultrasonic sensor</li>
+<li>Relay modules</li>
+<li>RFID RC522</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Advanced Features</h2>
+<ul>
+<li>Deep sleep mode</li>
+<li>FreeRTOS support</li>
+<li>Web server hosting</li>
+<li>Over-the-air updates</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>Tips</h2>
+<ul>
+<li>Use ADC1 pins for stable readings</li>
+<li>Avoid boot pins</li>
+<li>Use proper power supply</li>
+</ul>
+</section>
+
+</div>
 
 </body>
 </html>
