@@ -1,155 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProjectHub</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    body {
-      background: #0f0f0f;
-      color: #fff;
-    }
+body {
+  background: #0f0f0f;
+  color: white;
+}
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: #111;
-      border-bottom: 1px solid #222;
-      position: sticky;
-      top: 0;
-    }
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
 
-    .logo {
-      font-weight: 600;
-      font-size: 20px;
-      color: #00ffcc;
-    }
+.logo {
+  color: #00ffcc;
+  font-weight: 600;
+}
 
-    .nav-links a {
-      color: #ccc;
-      text-decoration: none;
-      margin-left: 20px;
-      transition: 0.3s;
-    }
+/* Profiles (like stories) */
+.profiles {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  overflow-x: auto;
+  border-bottom: 1px solid #222;
+}
 
-    .nav-links a:hover {
-      color: #00ffcc;
-    }
+.profile {
+  text-align: center;
+  cursor: pointer;
+}
 
-    /* Feed */
-    .feed {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 30px;
-    }
+.profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #00ffcc;
+  object-fit: cover;
+}
 
-    /* Card */
-    .card {
-      background: #181818;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: 0.3s;
-      cursor: pointer;
-      border: 1px solid #222;
-    }
+.profile span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(0,255,200,0.2);
-    }
+/* Feed */
+.feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+/* Card */
+.card {
+  background: #181818;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #222;
+  transition: 0.25s;
+  cursor: pointer;
+}
 
-    .card-content {
-      padding: 15px;
-    }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0,255,200,0.2);
+}
 
-    .card-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #222;
+}
 
-    .card-desc {
-      font-size: 14px;
-      color: #aaa;
-    }
+.card-content {
+  padding: 12px;
+}
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 14px;
-    }
-  </style>
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 5px;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo">⚡ ProjectHub</div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">About</a>
+<div class="navbar">
+  <div class="logo">⚡ ProjectHub</div>
+</div>
+
+<!-- Profiles -->
+<div class="profiles">
+  <div class="profile" onclick="filterProjects('esp32')">
+    <img src="./assets/esp32.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <span>ESP32</span>
+  </div>
+
+  <div class="profile" onclick="filterProjects('stm32')">
+    <img src="./assets/stm32.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <span>STM32</span>
+  </div>
+
+  <div class="profile" onclick="filterProjects('arduino')">
+    <img src="./assets/arduino.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <span>Arduino</span>
+  </div>
+</div>
+
+<!-- Feed -->
+<div class="feed" id="feed">
+
+  <!-- ESP32 -->
+  <div class="card" data-type="esp32" onclick="openProject('project1.html')">
+    <img src="./assets/esp32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <div class="card-content">
+      <div class="card-title">ESP32 Web Control</div>
+      <div class="card-desc">Control devices via web</div>
     </div>
   </div>
 
-  <!-- Feed -->
-  <div class="feed">
-
-    <!-- Card 1 -->
-    <div class="card" onclick="openProject('project1.html')">
-      <img src="assets/esp32.gif" alt="ESP32 Project">
-      <div class="card-content">
-        <div class="card-title">ESP32 Web Control</div>
-        <div class="card-desc">Control devices via web interface using ESP32.</div>
-      </div>
+  <!-- STM32 -->
+  <div class="card" data-type="stm32" onclick="openProject('project2.html')">
+    <img src="./assets/stm32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <div class="card-content">
+      <div class="card-title">STM32 RC System</div>
+      <div class="card-desc">Custom RF communication system</div>
     </div>
-
-    <!-- Card 2 -->
-    <div class="card" onclick="openProject('project2.html')">
-      <img src="assets/arduino.gif" alt="Arduino Project">
-      <div class="card-content">
-        <div class="card-title">Arduino Smart Sensor</div>
-        <div class="card-desc">Sensor-based automation with Arduino.</div>
-      </div>
-    </div>
-
-    <!-- Add more cards easily -->
-
   </div>
 
-  <footer>
-    © 2026 ProjectHub — Built by You 🚀
-  </footer>
+  <!-- Arduino -->
+  <div class="card" data-type="arduino" onclick="openProject('project3.html')">
+    <img src="./assets/arduino.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <div class="card-content">
+      <div class="card-title">Arduino Sensor</div>
+      <div class="card-desc">Automation using sensors</div>
+    </div>
+  </div>
 
-  <script>
-    function openProject(page) {
-      window.location.href = page;
+</div>
+
+<script>
+function openProject(page) {
+  window.location.href = page;
+}
+
+function filterProjects(type) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    if (card.dataset.type === type) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
     }
-  </script>
+  });
+}
+</script>
 
 </body>
 </html>
