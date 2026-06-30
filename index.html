@@ -8,174 +8,201 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
 }
 
-body {
-  background: #0f0f0f;
-  color: white;
+body{
+  background:#0f0f0f;
+  color:#fff;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 25px;
-  background: #111;
-  border-bottom: 1px solid #222;
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:#111;
+  border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.logo {
-  color: #00ffcc;
-  font-weight: 600;
+.logo{
+  color:#00ffcc;
+  font-weight:600;
+  font-size:18px;
 }
 
-/* Profiles */
-.profiles {
-  display: flex;
-  gap: 15px;
-  padding: 15px;
-  overflow-x: auto;
-  border-bottom: 1px solid #222;
+/* PROFILES */
+.profiles{
+  display:flex;
+  gap:18px;
+  padding:15px;
+  overflow-x:auto;
+  border-bottom:1px solid #222;
 }
 
-.profile {
-  text-align: center;
-  cursor: pointer;
+.profile{
+  text-align:center;
+  cursor:pointer;
+  min-width:70px;
 }
 
-.profile img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #00ffcc;
-  object-fit: cover;
+.profile img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid #00ffcc;
+  object-fit:cover;
 }
 
-.profile span {
-  display: block;
-  font-size: 12px;
-  margin-top: 5px;
+.profile span{
+  display:block;
+  font-size:11px;
+  margin-top:6px;
+  color:#ccc;
 }
 
-/* Feed */
-.feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 20px;
+/* FEED */
+.feed{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  padding:25px;
 }
 
-/* Card */
-.card {
-  background: #181818;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #222;
-  transition: 0.25s;
-  cursor: pointer;
+/* CARD */
+.card{
+  background:#181818;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #222;
+  transition:0.25s;
+  cursor:pointer;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(0,255,200,0.2);
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 15px rgba(0,255,200,0.25);
 }
 
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  background: #222;
-  display: block;
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  background:#222;
+  display:block;
 }
 
-/* Content */
-.card-content {
-  padding: 12px;
+.card-content{
+  padding:12px;
 }
 
-.card-title {
-  font-size: 16px;
-  font-weight: 600;
+.card-title{
+  font-size:15px;
+  font-weight:600;
 }
 
-.card-desc {
-  font-size: 13px;
-  color: #aaa;
-  margin-top: 5px;
+.card-desc{
+  font-size:12px;
+  color:#aaa;
+  margin-top:5px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  color:#666;
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">⚡ ProjectHub</div>
 </div>
 
-<!-- Profiles -->
+<!-- PROFILES -->
 <div class="profiles">
+
+  <div class="profile" onclick="filterProjects('all')">
+    <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/60'">
+    <span>All</span>
+  </div>
+
   <div class="profile" onclick="filterProjects('esp32')">
     <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/60'">
-    <span>ESP32</span>
+    <span>ESP32-S3</span>
   </div>
 
   <div class="profile" onclick="filterProjects('stm32')">
     <img src="./images/stm32.gif" onerror="this.src='https://via.placeholder.com/60'">
-    <span>STM32</span>
+    <span>STM32F401</span>
   </div>
 
   <div class="profile" onclick="filterProjects('arduino')">
     <img src="./images/arduino.gif" onerror="this.src='https://via.placeholder.com/60'">
-    <span>Arduino</span>
+    <span>UNO R3</span>
   </div>
+
 </div>
 
-<!-- Feed -->
+<!-- FEED -->
 <div class="feed">
 
   <!-- ESP32 -->
   <div class="card" data-type="esp32" onclick="openProject('project1.html')">
-    <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/esp32.gif" onerror="this.src='https://via.placeholder.com/300x180?text=ESP32'">
     <div class="card-content">
-      <div class="card-title">ESP32 Web Control</div>
-      <div class="card-desc">Control devices via web</div>
+      <div class="card-title">ESP32-S3 XIAO</div>
+      <div class="card-desc">WiFi / IoT control system</div>
     </div>
   </div>
 
   <!-- STM32 -->
   <div class="card" data-type="stm32" onclick="openProject('project2.html')">
-    <img src="./images/stm32.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/stm32.gif" onerror="this.src='https://via.placeholder.com/300x180?text=STM32'">
     <div class="card-content">
-      <div class="card-title">STM32 RC System</div>
-      <div class="card-desc">Custom RF communication</div>
+      <div class="card-title">STM32F401 Blackpill</div>
+      <div class="card-desc">RC communication project</div>
     </div>
   </div>
 
-  <!-- Arduino -->
+  <!-- ARDUINO -->
   <div class="card" data-type="arduino" onclick="openProject('project3.html')">
-    <img src="./images/arduino.gif" onerror="this.src='https://via.placeholder.com/300x180'">
+    <img src="./images/arduino.gif" onerror="this.src='https://via.placeholder.com/300x180?text=Arduino'">
     <div class="card-content">
-      <div class="card-title">Arduino Sensor</div>
-      <div class="card-desc">Sensor automation</div>
+      <div class="card-title">Arduino UNO R3</div>
+      <div class="card-desc">Sensor automation system</div>
     </div>
   </div>
 
 </div>
 
+<footer>
+  © 2026 ProjectHub
+</footer>
+
 <script>
-function openProject(page) {
+function openProject(page){
   window.location.href = page;
 }
 
-function filterProjects(type) {
+function filterProjects(type){
   const cards = document.querySelectorAll('.card');
+
   cards.forEach(card => {
-    if (card.dataset.type === type) {
+    if(type === "all" || card.dataset.type === type){
       card.style.display = "block";
     } else {
       card.style.display = "none";
