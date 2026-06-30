@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Profile</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>⚡ ESP32</h1>
+    <button onclick="goBack()">⬅ Back</button>
+</div>
+
+<div class="profile">
+
+    <img src="images/esp32s3.png" class="profile-img">
+
+    <h2>XIAO ESP32-S3</h2>
+
+    <p>Small but powerful ESP32 board with WiFi, BLE and USB support.</p>
+
+    <ul>
+        <li>ESP32-S3 (Xtensa LX7)</li>
+        <li>WiFi + BLE</li>
+        <li>USB-C (native USB)</li>
+        <li>Ultra compact size</li>
+        <li>Perfect for IoT & wearables</li>
+    </ul>
+
+    <button onclick="openProjects()">View ESP32 Projects</button>
+
+</div>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+
+function openProjects() {
+    window.location.href = "index.html?filter=esp32";
+}
+</script>
+
+</body>
+</html>
