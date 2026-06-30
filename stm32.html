@@ -3,239 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STM32 Wiki</title>
+<title>STM32 Hub Pro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* KEEP EXACT SAME CSS */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-body{background:#0f0f0f;color:#fff;line-height:1.6;}
-
-.container{max-width:1000px;margin:auto;padding:25px;}
-
-h1,h2{color:#00ffcc;margin-bottom:10px;}
-
-.card{
-  background:#181818;
-  padding:20px;
-  border-radius:12px;
-  border:1px solid #222;
-  margin-bottom:25px;
+body{
+  background:#0d1117;
+  color:#fff;
+  display:flex;
 }
 
-code, pre{
-  background:#000;
-  padding:12px;
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:#161b22;
+  height:100vh;
+  padding:20px;
+  border-right:1px solid #30363d;
+  position:fixed;
+}
+
+.sidebar h2{
+  color:#58a6ff;
+  margin-bottom:20px;
+}
+
+.sidebar a{
   display:block;
-  border-radius:8px;
-  overflow:auto;
+  padding:8px;
+  color:#ccc;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.sidebar a:hover{
+  background:#21262d;
+  color:#fff;
+}
+
+/* MAIN */
+.main{
+  margin-left:220px;
+  width:100%;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#161b22;
+  border-bottom:1px solid #30363d;
+}
+
+.search{
+  padding:8px;
+  border-radius:6px;
+  border:none;
+  background:#0d1117;
+  color:white;
+  width:250px;
+}
+
+/* FILTERS */
+.filters{
+  display:flex;
+  gap:10px;
+  padding:15px;
+  flex-wrap:wrap;
+}
+
+.filter-btn{
+  background:#21262d;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  color:#fff;
+}
+
+.filter-btn:hover{
+  background:#30363d;
+}
+
+/* GRID */
+.feed{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+.post{
+  background:#161b22;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+  border:1px solid #30363d;
+}
+
+.post:hover{
+  transform:translateY(-5px);
+}
+
+.post img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.content{
+  padding:15px;
+}
+
+.title{
+  font-size:18px;
+  color:#58a6ff;
+}
+
+.desc{
+  font-size:13px;
+  color:#aaa;
+  margin:5px 0;
+}
+
+.tags{
+  margin-top:8px;
+}
+
+.tag{
+  display:inline-block;
+  background:#21262d;
+  padding:3px 8px;
+  border-radius:5px;
+  font-size:11px;
+  margin-right:5px;
+}
+
+/* ACTIONS */
+.actions{
   margin-top:10px;
 }
 
-ul{margin-left:20px;}
+button{
+  background:#21262d;
+  border:none;
+  padding:6px;
+  border-radius:6px;
+  color:#fff;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#30363d;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>⚡ Hub</h2>
 
-<h1>⚡ STM32 Microcontroller</h1>
+<a href="index.html">Home</a>
+<a href="arduino.html">Arduino Docs</a>
+<a href="esp32.html">ESP32 Docs</a>
+<a href="stm32.html">STM32 Docs</a>
 
-<div class="card">
-<h2>Overview</h2>
-<p>STM32 is a family of 32-bit ARM Cortex microcontrollers developed by STMicroelectronics. It is widely used in embedded systems, robotics, industrial automation, and IoT.</p>
+<hr style="margin:15px 0;">
 
-<ul>
-<li>ARM Cortex-M core (M0, M3, M4, M7)</li>
-<li>High performance (up to 480MHz)</li>
-<li>Low power consumption</li>
-<li>Rich peripherals</li>
-</ul>
+<a href="#">Basic</a>
+<a href="#">Peripherals</a>
+<a href="#">DMA</a>
+<a href="#">RTOS</a>
 </div>
 
-<div class="card">
-<h2>Popular Boards</h2>
-<ul>
-<li>STM32F103C8T6 (Blue Pill)</li>
-<li>STM32F401CCU6</li>
-<li>STM32F407 Discovery</li>
-<li>STM32 Nucleo series</li>
-</ul>
+<div class="main">
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div>🚀 STM32 Feed Pro</div>
+<input class="search" placeholder="Search STM32 projects..." onkeyup="searchPost(this.value)">
 </div>
 
-<div class="card">
-<h2>Applications</h2>
-<ul>
-<li>Robotics & automation</li>
-<li>Flight controllers (drones)</li>
-<li>Motor control</li>
-<li>IoT devices</li>
-<li>Medical electronics</li>
-</ul>
+<!-- FILTERS -->
+<div class="filters">
+<button class="filter-btn" onclick="filter('all')">All</button>
+<button class="filter-btn" onclick="filter('basic')">Basic</button>
+<button class="filter-btn" onclick="filter('gpio')">GPIO</button>
+<button class="filter-btn" onclick="filter('comm')">Communication</button>
+<button class="filter-btn" onclick="filter('advanced')">Advanced</button>
 </div>
 
-<div class="card">
-<h2>Pin Functions (Example: STM32F103)</h2>
-<ul>
-<li>GPIOA, GPIOB, GPIOC → Digital I/O</li>
-<li>ADC → PA0–PA7, PB0–PB1</li>
-<li>UART → PA9 (TX), PA10 (RX)</li>
-<li>I2C → PB6 (SCL), PB7 (SDA)</li>
-<li>SPI → PA5, PA6, PA7</li>
-<li>PWM → Most GPIO pins</li>
-</ul>
-</div>
+<!-- FEED -->
+<div class="feed" id="feed">
 
-<div class="card">
-<h2>Important Notes</h2>
-<ul>
-<li>3.3V logic ONLY</li>
-<li>Some pins are 5V tolerant</li>
-<li>Use proper clock configuration</li>
-<li>Boot0 pin selects programming mode</li>
-</ul>
-</div>
+<script>
+const posts = [
 
-<div class="card">
-<h2>Development Methods</h2>
-<ul>
-<li>Arduino IDE (easy)</li>
-<li>STM32CubeIDE (professional)</li>
-<li>PlatformIO (advanced)</li>
-</ul>
-</div>
+{name:"Blink LED (HAL)",cat:"basic",img:"images/stm32-blink.jpg",page:"pages/stm32-blink.html",desc:"Basic LED using HAL",tags:["GPIO","HAL"],id:"s1"},
 
-<div class="card">
-<h2>Setup (Arduino IDE)</h2>
-<pre>
-File > Preferences
+{name:"GPIO Input Button",cat:"gpio",img:"images/stm32-button.jpg",page:"pages/stm32-button.html",desc:"Button input read",tags:["GPIO"],id:"s2"},
 
-Add URL:
-https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
-</pre>
+{name:"UART Communication",cat:"comm",img:"images/stm32-uart.jpg",page:"pages/stm32-uart.html",desc:"Serial communication",tags:["UART"],id:"s3"},
 
-<pre>
-Tools > Board Manager
-Install STM32 boards
-</pre>
-</div>
+{name:"I2C OLED Display",cat:"comm",img:"images/stm32-oled.jpg",page:"pages/stm32-oled.html",desc:"Display text on OLED",tags:["I2C"],id:"s4"},
 
-<div class="card">
-<h2>Upload Methods</h2>
+{name:"PWM Motor Control",cat:"advanced",img:"images/stm32-pwm.jpg",page:"pages/stm32-pwm.html",desc:"Control motor speed",tags:["PWM"],id:"s5"},
 
-<h3>1. ST-Link (Recommended)</h3>
-<ul>
-<li>Connect SWDIO, SWCLK, GND, 3.3V</li>
-<li>Use STM32CubeProgrammer</li>
-</ul>
+{name:"FreeRTOS Task",cat:"advanced",img:"images/stm32-rtos.jpg",page:"pages/stm32-rtos.html",desc:"Multi-tasking system",tags:["RTOS"],id:"s6"}
 
-<h3>2. USB (Serial Bootloader)</h3>
-<ul>
-<li>Set BOOT0 = HIGH</li>
-<li>Upload via USB</li>
-<li>Set BOOT0 back to LOW</li>
-</ul>
+];
 
-<h3>3. UART Upload</h3>
-<ul>
-<li>Use USB-TTL converter</li>
-<li>TX ↔ RX connection</li>
-</ul>
+function render(){
+  let html = "";
+  posts.forEach(p=>{
+    html += `
+    <div class="post ${p.cat}" data-name="${p.name.toLowerCase()}" onclick="openPage('${p.page}')">
 
-</div>
+      <img src="${p.img}">
 
-<div class="card">
-<h2>Basic Blink Code</h2>
-<pre>
-void setup() {
-  pinMode(PC13, OUTPUT);
+      <div class="content">
+        <div class="title">${p.name}</div>
+        <div class="desc">${p.desc}</div>
+
+        <div class="tags">
+          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+        </div>
+
+        <div class="actions">
+          <button onclick="like(event,'${p.id}')">❤️ <span id="${p.id}">0</span></button>
+        </div>
+      </div>
+
+    </div>`;
+  });
+
+  document.getElementById("feed").innerHTML = html;
 }
 
-void loop() {
-  digitalWrite(PC13, LOW);
-  delay(1000);
-  digitalWrite(PC13, HIGH);
-  delay(1000);
-}
-</pre>
-</div>
-
-<div class="card">
-<h2>Serial Communication</h2>
-<pre>
-void setup() {
-  Serial.begin(9600);
+function openPage(page){
+  window.location.href = page;
 }
 
-void loop() {
-  Serial.println("Hello STM32");
-  delay(1000);
+function like(e,id){
+  e.stopPropagation();
+  let count = localStorage.getItem(id) || 0;
+  count++;
+  localStorage.setItem(id,count);
+  document.getElementById(id).innerText = count;
 }
-</pre>
+
+window.onload = function(){
+  render();
+
+  setTimeout(()=>{
+    posts.forEach(p=>{
+      document.getElementById(p.id).innerText =
+        localStorage.getItem(p.id) || 0;
+    });
+  },100);
+}
+
+function filter(type){
+  document.querySelectorAll(".post").forEach(p=>{
+    if(type==="all") p.style.display="block";
+    else p.style.display = p.classList.contains(type)?"block":"none";
+  });
+}
+
+function searchPost(text){
+  text=text.toLowerCase();
+  document.querySelectorAll(".post").forEach(p=>{
+    let name=p.getAttribute("data-name");
+    p.style.display = name.includes(text)?"block":"none";
+  });
+}
+</script>
+
 </div>
 
-<div class="card">
-<h2>Libraries</h2>
-<ul>
-<li>STM32duino core</li>
-<li>Wire (I2C)</li>
-<li>SPI</li>
-<li>Servo</li>
-<li>STM32LowPower</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Modules Support</h2>
-<ul>
-<li>MPU6050 (IMU)</li>
-<li>NRF24L01</li>
-<li>OLED (SSD1306)</li>
-<li>GPS modules</li>
-<li>Motor drivers (L298N)</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Advanced Features</h2>
-<ul>
-<li>DMA (Direct Memory Access)</li>
-<li>Timers (very powerful)</li>
-<li>Interrupts</li>
-<li>RTOS (FreeRTOS)</li>
-<li>Low power modes</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Pros</h2>
-<ul>
-<li>Very powerful</li>
-<li>Cheap</li>
-<li>Industrial grade</li>
-<li>Flexible peripherals</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Cons</h2>
-<ul>
-<li>Complex for beginners</li>
-<li>Setup takes time</li>
-<li>Documentation heavy</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Tips</h2>
-<ul>
-<li>Always check pinout for your exact board</li>
-<li>Use ST-Link for reliable upload</li>
-<li>Use CubeIDE for advanced projects</li>
-<li>Avoid wrong voltage (can damage MCU)</li>
-</ul>
+<div class="footer">
+⚡ STM32 Hub | Advanced Embedded Systems UI
 </div>
 
 </div>
