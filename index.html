@@ -1,127 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Dev Feed</title>
+    <title>Baguet</title>
 
-<style>
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-/* BASE */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d1117;
-  color: #e6edf3;
-}
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #0d1117;
+        color: white;
+    }
 
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 25px;
-  font-size: 22px;
-  font-weight: bold;
-  background: #161b22;
-  border-bottom: 1px solid #30363d;
-}
+    /* HEADER */
+    .header {
+        position: sticky;
+        top: 0;
+        background: #161b22;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #30363d;
+    }
 
-/* GRID */
-.container {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  padding: 40px;
-}
+    .logo {
+        font-weight: 600;
+        font-size: 18px;
+    }
 
-/* CARD */
-.card {
-  width: 280px;
-  background: #161b22;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #30363d;
-  text-decoration: none;
-  color: white;
-  transition: 0.3s;
-  position: relative;
-}
+    .search {
+        padding: 6px;
+        border-radius: 8px;
+        border: none;
+        background: #0d1117;
+        color: white;
+    }
 
-/* HOVER EFFECT */
-.card:hover {
-  transform: scale(1.05);
-  border-color: #58a6ff;
-  box-shadow: 0 0 20px rgba(88,166,255,0.3);
-}
+    /* FEED */
+    .feed {
+        max-width: 500px;
+        margin: auto;
+    }
 
-/* IMAGE */
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
+    .card {
+        background: #161b22;
+        margin: 15px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        transition: 0.3s;
+    }
 
-/* OVERLAY TEXT */
-.card .info {
-  padding: 15px;
-}
+    .card:hover {
+        transform: scale(1.01);
+    }
 
-.card h2 {
-  margin: 0;
-  font-size: 18px;
-}
+    .card img {
+        width: 100%;
+        display: block;
+    }
 
-.card p {
-  font-size: 13px;
-  color: #8b949e;
-  margin-top: 5px;
-}
+    .content {
+        padding: 10px;
+    }
 
-/* TAG BADGE */
-.badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #58a6ff;
-  color: black;
-  padding: 4px 8px;
-  font-size: 10px;
-  border-radius: 6px;
-  font-weight: bold;
-}
+    .title {
+        font-weight: 600;
+    }
 
-</style>
+    .desc {
+        font-size: 13px;
+        color: #aaa;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .btn {
+        background: #238636;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .like {
+        cursor: pointer;
+    }
+
+    </style>
 </head>
 
 <body>
 
 <div class="header">
-🚀 My Embedded Projects
+    <div class="logo">⚡ Baguet</div>
+    <input class="search" placeholder="Search...">
 </div>
 
-<div class="container">
+<div class="feed">
 
-  <!-- ARDUINO -->
-  <a href="./arduino.html" class="card">
-    <div class="badge">BEGINNER</div>
-    <img src="./images/arduino.gif" alt="Arduino">
-    <div class="info">
-      <h2>Arduino UNO</h2>
-      <p>LED, sensors, basic control systems</p>
-    </div>
-  </a>
+    <!-- POST -->
+    <div class="card" onclick="openPage('led-on.html')">
+        <img src="images/led-on.png">
+        <div class="content">
+            <div class="title">LED ON</div>
+            <div class="desc">Turn ON built-in LED</div>
 
-  <!-- STM32 -->
-  <a href="./stm32.html" class="card">
-    <div class="badge">ADVANCED</div>
-    <img src="./images/stm32.gif" alt="STM32">
-    <div class="info">
-      <h2>STM32</h2>
-      <p>High speed, HAL, DMA, pro embedded</p>
+            <div class="actions">
+                <span class="like" onclick="like(event,this)">❤️ 0</span>
+                <button class="btn">Open</button>
+            </div>
+        </div>
     </div>
-  </a>
+
+    <!-- POST -->
+    <div class="card">
+        <img src="images/blink.png">
+        <div class="content">
+            <div class="title">Blink</div>
+            <div class="desc">Basic LED blinking</div>
+
+            <div class="actions">
+                <span class="like" onclick="like(event,this)">❤️ 0</span>
+                <button class="btn">Open</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESP32 -->
+    <div class="card" onclick="openPage('esp32.html')">
+        <img src="images/esp32s3.png">
+        <div class="content">
+            <div class="title">ESP32</div>
+            <div class="desc">XIAO ESP32-S3</div>
+
+            <div class="actions">
+                <span class="like" onclick="like(event,this)">❤️ 0</span>
+                <button class="btn">Open</button>
+            </div>
+        </div>
+    </div>
 
 </div>
+
+<script>
+
+function openPage(page){
+    window.location.href = page;
+}
+
+function like(e, el){
+    e.stopPropagation();
+    let count = parseInt(el.innerText.split(" ")[1]);
+    count++;
+    el.innerText = "❤️ " + count;
+}
+
+</script>
 
 </body>
 </html>
