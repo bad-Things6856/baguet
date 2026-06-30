@@ -3,200 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arduino Feed</title>
+<title>Arduino Hub Pro</title>
 
-<link rel="stylesheet" href="styles/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:#0d1117;
+  color:#fff;
+  display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:#161b22;
+  height:100vh;
+  padding:20px;
+  border-right:1px solid #30363d;
+  position:fixed;
+}
+
+.sidebar h2{
+  color:#58a6ff;
+  margin-bottom:20px;
+}
+
+.sidebar a{
+  display:block;
+  padding:8px;
+  color:#ccc;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.sidebar a:hover{
+  background:#21262d;
+  color:#fff;
+}
+
+/* MAIN */
+.main{
+  margin-left:220px;
+  width:100%;
+}
+
 /* NAVBAR */
-.navbar {
+.navbar{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:10px 20px;
+  padding:15px;
   background:#161b22;
   border-bottom:1px solid #30363d;
 }
 
-.logo {
-  font-size:20px;
-  font-weight:bold;
-  color:#58a6ff;
-}
-
-.search {
-  padding:6px;
+.search{
+  padding:8px;
   border-radius:6px;
   border:none;
   background:#0d1117;
   color:white;
+  width:250px;
 }
 
 /* FILTERS */
-.filters {
+.filters{
   display:flex;
   gap:10px;
-  padding:10px;
-  justify-content:center;
+  padding:15px;
+  flex-wrap:wrap;
 }
 
-.filter-btn {
+.filter-btn{
   background:#21262d;
   border:none;
   padding:6px 12px;
   border-radius:6px;
   cursor:pointer;
+  color:#fff;
 }
 
-.filter-btn:hover {
+.filter-btn:hover{
+  background:#30363d;
+}
+
+/* GRID */
+.feed{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+.post{
+  background:#161b22;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+  border:1px solid #30363d;
+}
+
+.post:hover{
+  transform:translateY(-5px);
+}
+
+.post img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.content{
+  padding:15px;
+}
+
+.title{
+  font-size:18px;
+  color:#58a6ff;
+}
+
+.desc{
+  font-size:13px;
+  color:#aaa;
+  margin:5px 0;
+}
+
+.tags{
+  margin-top:8px;
+}
+
+.tag{
+  display:inline-block;
+  background:#21262d;
+  padding:3px 8px;
+  border-radius:5px;
+  font-size:11px;
+  margin-right:5px;
+}
+
+/* ACTIONS */
+.actions{
+  margin-top:10px;
+}
+
+button{
+  background:#21262d;
+  border:none;
+  padding:6px;
+  border-radius:6px;
+  color:#fff;
+  cursor:pointer;
+}
+
+button:hover{
   background:#30363d;
 }
 
 /* FOOTER */
-.footer {
+.footer{
   text-align:center;
   padding:20px;
-  color:#888;
+  color:#777;
 }
 
 </style>
-
 </head>
 
 <body>
 
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>⚡ Hub</h2>
+
+<a href="index.html">Home</a>
+<a href="arduino.html">Arduino Docs</a>
+<a href="esp32.html">ESP32 Docs</a>
+<a href="stm32.html">STM32 Docs</a>
+
+<hr style="margin:15px 0;">
+
+<a href="#">Basic</a>
+<a href="#">Sensors</a>
+<a href="#">IoT</a>
+<a href="#">Robotics</a>
+</div>
+
+<div class="main">
+
 <!-- NAVBAR -->
 <div class="navbar">
-  <div class="logo">⚡ Arduino Hub</div>
-  <input class="search" placeholder="Search projects..." onkeyup="searchPost(this.value)">
+<div>🚀 Arduino Feed Pro</div>
+<input class="search" placeholder="Search projects..." onkeyup="searchPost(this.value)">
 </div>
 
 <!-- FILTERS -->
 <div class="filters">
-  <button class="filter-btn" onclick="filter('all')">All</button>
-  <button class="filter-btn" onclick="filter('basic')">Basic</button>
-  <button class="filter-btn" onclick="filter('input')">Input</button>
-  <button class="filter-btn" onclick="filter('pwm')">PWM</button>
+<button class="filter-btn" onclick="filter('all')">All</button>
+<button class="filter-btn" onclick="filter('basic')">Basic</button>
+<button class="filter-btn" onclick="filter('sensor')">Sensors</button>
+<button class="filter-btn" onclick="filter('iot')">IoT</button>
+<button class="filter-btn" onclick="filter('pwm')">PWM</button>
 </div>
 
 <!-- FEED -->
 <div class="feed" id="feed">
 
-<!-- LED ON -->
-<div class="post basic" data-name="led on" onclick="openPage('pages/led-on.html')">
-<img src="images/led-on.png">
-<div class="content">
-<div class="title">LED ON</div>
-<div class="desc">Turn ON built-in LED</div>
-
-<div class="actions">
-<button onclick="like(event,'p1')">❤️ <span id="p1">0</span></button>
-</div>
-</div>
-</div>
-
-<!-- BLINK -->
-<div class="post basic" data-name="blink" onclick="openPage('pages/blink.html')">
-<img src="images/blink.gif">
-<div class="content">
-<div class="title">Blink</div>
-<div class="desc">Basic LED blinking</div>
-
-<div class="actions">
-<button onclick="like(event,'p2')">❤️ <span id="p2">0</span></button>
-</div>
-</div>
-</div>
-
-<!-- BUTTON -->
-<div class="post input" data-name="button led" onclick="openPage('pages/button-led.html')">
-<img src="images/button.gif">
-<div class="content">
-<div class="title">Button LED</div>
-<div class="desc">Control LED using button</div>
-
-<div class="actions">
-<button onclick="like(event,'p3')">❤️ <span id="p3">0</span></button>
-</div>
-</div>
-</div>
-
-<!-- FADE -->
-<div class="post pwm" data-name="fade led" onclick="openPage('pages/fade-led.html')">
-<img src="images/fade.gif">
-<div class="content">
-<div class="title">Fade LED</div>
-<div class="desc">Smooth PWM brightness</div>
-
-<div class="actions">
-<button onclick="like(event,'p4')">❤️ <span id="p4">0</span></button>
-</div>
-</div>
-</div>
-
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  🚀 Built by you | Arduino + STM32 Projects
-</div>
-
+<!-- POSTS -->
 <script>
+const posts = [
 
-// OPEN PAGE
+{name:"Blink LED",cat:"basic",img:"images/blink.gif",page:"pages/blink.html",desc:"Basic LED blink",tags:["LED","Beginner"],id:"p1"},
+{name:"Button LED",cat:"basic",img:"images/button.gif",page:"pages/button.html",desc:"Button control",tags:["Input"],id:"p2"},
+{name:"Fade LED",cat:"pwm",img:"images/fade.gif",page:"pages/fade.html",desc:"PWM brightness",tags:["PWM"],id:"p3"},
+{name:"DHT11 Temp",cat:"sensor",img:"images/dht.jpg",page:"pages/dht.html",desc:"Temp + Humidity",tags:["Sensor"],id:"p4"},
+{name:"Ultrasonic",cat:"sensor",img:"images/ultra.jpg",page:"pages/ultra.html",desc:"Distance measure",tags:["HC-SR04"],id:"p5"},
+{name:"WiFi ESP32",cat:"iot",img:"images/wifi.jpg",page:"pages/wifi.html",desc:"WiFi connect",tags:["IoT"],id:"p6"}
+
+];
+
+function render(){
+  let html = "";
+  posts.forEach(p=>{
+    html += `
+    <div class="post ${p.cat}" data-name="${p.name.toLowerCase()}" onclick="openPage('${p.page}')">
+
+      <img src="${p.img}">
+
+      <div class="content">
+        <div class="title">${p.name}</div>
+        <div class="desc">${p.desc}</div>
+
+        <div class="tags">
+          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+        </div>
+
+        <div class="actions">
+          <button onclick="like(event,'${p.id}')">❤️ <span id="${p.id}">0</span></button>
+        </div>
+      </div>
+
+    </div>`;
+  });
+
+  document.getElementById("feed").innerHTML = html;
+}
+
+/* NAV */
 function openPage(page){
   window.location.href = page;
 }
 
-// LIKE SYSTEM
+/* LIKE */
 function like(e,id){
   e.stopPropagation();
-
   let count = localStorage.getItem(id) || 0;
   count++;
-
   localStorage.setItem(id,count);
   document.getElementById(id).innerText = count;
 }
 
-// LOAD LIKES
+/* LOAD */
 window.onload = function(){
-  ['p1','p2','p3','p4'].forEach(id=>{
-    document.getElementById(id).innerText =
-      localStorage.getItem(id) || 0;
-  });
+  render();
+
+  setTimeout(()=>{
+    posts.forEach(p=>{
+      document.getElementById(p.id).innerText =
+        localStorage.getItem(p.id) || 0;
+    });
+  },100);
 }
 
-// FILTER SYSTEM
+/* FILTER */
 function filter(type){
-  let posts = document.querySelectorAll(".post");
-
-  posts.forEach(p=>{
-    if(type === "all"){
-      p.style.display = "block";
-    } else {
-      p.style.display = p.classList.contains(type) ? "block" : "none";
-    }
-  });
-}
-
-// SEARCH SYSTEM
-function searchPost(text){
-  text = text.toLowerCase();
-
   document.querySelectorAll(".post").forEach(p=>{
-    let name = p.getAttribute("data-name");
-
-    if(name.includes(text)){
-      p.style.display = "block";
-    } else {
-      p.style.display = "none";
-    }
+    if(type==="all") p.style.display="block";
+    else p.style.display = p.classList.contains(type)?"block":"none";
   });
 }
 
+/* SEARCH */
+function searchPost(text){
+  text=text.toLowerCase();
+  document.querySelectorAll(".post").forEach(p=>{
+    let name=p.getAttribute("data-name");
+    p.style.display = name.includes(text)?"block":"none";
+  });
+}
 </script>
+
+</div>
+
+<div class="footer">
+⚡ Advanced Arduino Hub | Docs + Projects + UI System
+</div>
+
+</div>
 
 </body>
 </html>
