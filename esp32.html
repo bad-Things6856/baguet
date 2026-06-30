@@ -3,194 +3,305 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ESP32-S3 XIAO</title>
+<title>ESP32 Hub Pro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-body{background:#0f0f0f;color:#fff;line-height:1.6;}
-
-.container{max-width:1000px;margin:auto;padding:25px;}
-
-h1,h2{color:#00ffcc;margin-bottom:10px;}
-section{margin-bottom:30px;}
-
-.card{
-  background:#181818;
-  padding:20px;
-  border-radius:12px;
-  border:1px solid #222;
+body{
+  background:#0d1117;
+  color:#fff;
+  display:flex;
 }
 
-code, pre{
-  background:#000;
-  padding:10px;
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:#161b22;
+  height:100vh;
+  padding:20px;
+  border-right:1px solid #30363d;
+  position:fixed;
+}
+
+.sidebar h2{
+  color:#58a6ff;
+  margin-bottom:20px;
+}
+
+.sidebar a{
   display:block;
-  border-radius:8px;
-  overflow:auto;
+  padding:8px;
+  color:#ccc;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.sidebar a:hover{
+  background:#21262d;
+  color:#fff;
+}
+
+/* MAIN */
+.main{
+  margin-left:220px;
+  width:100%;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#161b22;
+  border-bottom:1px solid #30363d;
+}
+
+.search{
+  padding:8px;
+  border-radius:6px;
+  border:none;
+  background:#0d1117;
+  color:white;
+  width:250px;
+}
+
+/* FILTERS */
+.filters{
+  display:flex;
+  gap:10px;
+  padding:15px;
+  flex-wrap:wrap;
+}
+
+.filter-btn{
+  background:#21262d;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  color:#fff;
+}
+
+.filter-btn:hover{
+  background:#30363d;
+}
+
+/* GRID */
+.feed{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+.post{
+  background:#161b22;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+  border:1px solid #30363d;
+}
+
+.post:hover{
+  transform:translateY(-5px);
+}
+
+.post img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.content{
+  padding:15px;
+}
+
+.title{
+  font-size:18px;
+  color:#58a6ff;
+}
+
+.desc{
+  font-size:13px;
+  color:#aaa;
+  margin:5px 0;
+}
+
+.tags{
+  margin-top:8px;
+}
+
+.tag{
+  display:inline-block;
+  background:#21262d;
+  padding:3px 8px;
+  border-radius:5px;
+  font-size:11px;
+  margin-right:5px;
+}
+
+/* ACTIONS */
+.actions{
   margin-top:10px;
 }
 
-ul{margin-left:20px;}
+button{
+  background:#21262d;
+  border:none;
+  padding:6px;
+  border-radius:6px;
+  color:#fff;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#30363d;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
 
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>⚡ Hub</h2>
 
-<h1>⚡ ESP32-S3 XIAO</h1>
+<a href="index.html">Home</a>
+<a href="arduino.html">Arduino Docs</a>
+<a href="esp32.html">ESP32 Docs</a>
+<a href="stm32.html">STM32 Docs</a>
 
-<section class="card">
-<h2>Overview</h2>
-<p>ESP32 is a powerful microcontroller with built-in WiFi and Bluetooth. It is widely used for IoT systems, embedded control, and automation projects.</p>
-<ul>
-<li>Dual-core processor up to 240MHz</li>
-<li>WiFi + Bluetooth (BLE)</li>
-<li>Low power modes</li>
-<li>Multiple GPIO pins</li>
-</ul>
-</section>
+<hr style="margin:15px 0;">
 
-<section class="card">
-<h2>Applications</h2>
-<ul>
-<li>Smart home automation</li>
-<li>Wireless sensor networks</li>
-<li>IoT dashboards</li>
-<li>Robotics</li>
-<li>Wearables</li>
-</ul>
-</section>
+<a href="#">WiFi</a>
+<a href="#">Bluetooth</a>
+<a href="#">WebServer</a>
+<a href="#">IoT</a>
+</div>
 
-<section class="card">
-<h2>Pin Functions</h2>
-<ul>
-<li>GPIO0–39 → Digital I/O</li>
-<li>GPIO32–39 → ADC</li>
-<li>GPIO25,26 → DAC</li>
-<li>I2C → 21 (SDA), 22 (SCL)</li>
-<li>SPI → 18,19,23,5</li>
-<li>UART → TX (1), RX (3)</li>
-</ul>
-</section>
+<div class="main">
 
-<section class="card">
-<h2>Important Notes</h2>
-<ul>
-<li>GPIO34–39 are input only</li>
-<li>GPIO6–11 reserved</li>
-<li>Boot pins must be used carefully</li>
-</ul>
-</section>
+<!-- NAVBAR -->
+<div class="navbar">
+<div>🚀 ESP32 Feed Pro</div>
+<input class="search" placeholder="Search ESP32 projects..." onkeyup="searchPost(this.value)">
+</div>
 
-<section class="card">
-<h2>Setup (Arduino IDE)</h2>
-<pre>
-File > Preferences
-Add:
-https://dl.espressif.com/dl/package_esp32_index.json
-</pre>
+<!-- FILTERS -->
+<div class="filters">
+<button class="filter-btn" onclick="filter('all')">All</button>
+<button class="filter-btn" onclick="filter('wifi')">WiFi</button>
+<button class="filter-btn" onclick="filter('ble')">Bluetooth</button>
+<button class="filter-btn" onclick="filter('web')">WebServer</button>
+<button class="filter-btn" onclick="filter('iot')">IoT</button>
+</div>
 
-<pre>
-Tools > Board Manager
-Install ESP32
-</pre>
-</section>
+<!-- FEED -->
+<div class="feed" id="feed">
 
-<section class="card">
-<h2>Upload Steps</h2>
-<ul>
-<li>Select Board</li>
-<li>Select COM Port</li>
-<li>Click Upload</li>
-<li>Hold BOOT if needed</li>
-</ul>
-</section>
+<script>
+const posts = [
 
-<section class="card">
-<h2>Basic Blink Code</h2>
-<pre>
-void setup() {
-  pinMode(2, OUTPUT);
+{name:"WiFi Connect",cat:"wifi",img:"images/wifi.jpg",page:"pages/wifi.html",desc:"Connect ESP32 to WiFi",tags:["WiFi","Network"],id:"e1"},
+
+{name:"ESP32 Web Server",cat:"web",img:"images/webserver.jpg",page:"pages/webserver.html",desc:"Host website on ESP32",tags:["HTTP"],id:"e2"},
+
+{name:"LED Control Web",cat:"web",img:"images/led-web.jpg",page:"pages/ledweb.html",desc:"Control LED via browser",tags:["IoT"],id:"e3"},
+
+{name:"Bluetooth Serial",cat:"ble",img:"images/bluetooth.jpg",page:"pages/bluetooth.html",desc:"BLE communication",tags:["BLE"],id:"e4"},
+
+{name:"MQTT IoT",cat:"iot",img:"images/mqtt.jpg",page:"pages/mqtt.html",desc:"Cloud IoT system",tags:["MQTT"],id:"e5"},
+
+{name:"ESP32 Camera",cat:"iot",img:"images/cam.jpg",page:"pages/cam.html",desc:"Live camera stream",tags:["CAM"],id:"e6"}
+
+];
+
+function render(){
+  let html = "";
+  posts.forEach(p=>{
+    html += `
+    <div class="post ${p.cat}" data-name="${p.name.toLowerCase()}" onclick="openPage('${p.page}')">
+
+      <img src="${p.img}">
+
+      <div class="content">
+        <div class="title">${p.name}</div>
+        <div class="desc">${p.desc}</div>
+
+        <div class="tags">
+          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+        </div>
+
+        <div class="actions">
+          <button onclick="like(event,'${p.id}')">❤️ <span id="${p.id}">0</span></button>
+        </div>
+      </div>
+
+    </div>`;
+  });
+
+  document.getElementById("feed").innerHTML = html;
 }
 
-void loop() {
-  digitalWrite(2, HIGH);
-  delay(1000);
-  digitalWrite(2, LOW);
-  delay(1000);
-}
-</pre>
-</section>
-
-<section class="card">
-<h2>WiFi Example</h2>
-<pre>
-#include &lt;WiFi.h&gt;
-
-const char* ssid = "YOUR_WIFI";
-const char* password = "PASSWORD";
-
-void setup() {
-  Serial.begin(115200);
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("Connected");
+function openPage(page){
+  window.location.href = page;
 }
 
-void loop() {}
-</pre>
-</section>
+function like(e,id){
+  e.stopPropagation();
+  let count = localStorage.getItem(id) || 0;
+  count++;
+  localStorage.setItem(id,count);
+  document.getElementById(id).innerText = count;
+}
 
-<section class="card">
-<h2>Libraries</h2>
-<ul>
-<li>WiFi.h</li>
-<li>BluetoothSerial.h</li>
-<li>ESPAsyncWebServer.h</li>
-<li>DHT.h</li>
-<li>Servo.h</li>
-</ul>
-</section>
+window.onload = function(){
+  render();
 
-<section class="card">
-<h2>Modules</h2>
-<ul>
-<li>DHT11/DHT22</li>
-<li>OLED display</li>
-<li>Ultrasonic sensor</li>
-<li>Relay modules</li>
-<li>RFID RC522</li>
-</ul>
-</section>
+  setTimeout(()=>{
+    posts.forEach(p=>{
+      document.getElementById(p.id).innerText =
+        localStorage.getItem(p.id) || 0;
+    });
+  },100);
+}
 
-<section class="card">
-<h2>Advanced Features</h2>
-<ul>
-<li>Deep sleep mode</li>
-<li>FreeRTOS support</li>
-<li>Web server hosting</li>
-<li>Over-the-air updates</li>
-</ul>
-</section>
+function filter(type){
+  document.querySelectorAll(".post").forEach(p=>{
+    if(type==="all") p.style.display="block";
+    else p.style.display = p.classList.contains(type)?"block":"none";
+  });
+}
 
-<section class="card">
-<h2>Tips</h2>
-<ul>
-<li>Use ADC1 pins for stable readings</li>
-<li>Avoid boot pins</li>
-<li>Use proper power supply</li>
-</ul>
-</section>
+function searchPost(text){
+  text=text.toLowerCase();
+  document.querySelectorAll(".post").forEach(p=>{
+    let name=p.getAttribute("data-name");
+    p.style.display = name.includes(text)?"block":"none";
+  });
+}
+</script>
+
+</div>
+
+<div class="footer">
+⚡ ESP32 Hub | IoT + Web + Wireless Systems
+</div>
 
 </div>
 
