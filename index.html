@@ -1,170 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Baguet</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Hub</title>
 
-    <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: #0d1117;
-        color: white;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    /* HEADER */
-    .header {
-        position: sticky;
-        top: 0;
-        background: #161b22;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #30363d;
+    body {
+      background: #0f0f0f;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #111;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
     }
 
     .logo {
-        font-weight: 600;
-        font-size: 18px;
+      font-weight: 600;
+      font-size: 20px;
+      color: #00ffcc;
     }
 
-    .search {
-        padding: 6px;
-        border-radius: 8px;
-        border: none;
-        background: #0d1117;
-        color: white;
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 20px;
+      transition: 0.3s;
     }
 
-    /* FEED */
+    .nav-links a:hover {
+      color: #00ffcc;
+    }
+
+    /* Feed */
     .feed {
-        max-width: 500px;
-        margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
     }
 
+    /* Card */
     .card {
-        background: #161b22;
-        margin: 15px;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        transition: 0.3s;
+      background: #181818;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: 0.3s;
+      cursor: pointer;
+      border: 1px solid #222;
     }
 
     .card:hover {
-        transform: scale(1.01);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,255,200,0.2);
     }
 
     .card img {
-        width: 100%;
-        display: block;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
 
-    .content {
-        padding: 10px;
+    .card-content {
+      padding: 15px;
     }
 
-    .title {
-        font-weight: 600;
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .desc {
-        font-size: 13px;
-        color: #aaa;
+    .card-desc {
+      font-size: 14px;
+      color: #aaa;
     }
 
-    .actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
     }
-
-    .btn {
-        background: #238636;
-        border: none;
-        padding: 6px 10px;
-        border-radius: 8px;
-        color: white;
-        cursor: pointer;
-    }
-
-    .like {
-        cursor: pointer;
-    }
-
-    </style>
+  </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div class="logo">⚡ Baguet</div>
-    <input class="search" placeholder="Search...">
-</div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">⚡ ProjectHub</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+    </div>
+  </div>
 
-<div class="feed">
+  <!-- Feed -->
+  <div class="feed">
 
-    <!-- POST -->
-    <div class="card" onclick="openPage('led-on.html')">
-        <img src="images/led-on.png">
-        <div class="content">
-            <div class="title">LED ON</div>
-            <div class="desc">Turn ON built-in LED</div>
-
-            <div class="actions">
-                <span class="like" onclick="like(event,this)">❤️ 0</span>
-                <button class="btn">Open</button>
-            </div>
-        </div>
+    <!-- Card 1 -->
+    <div class="card" onclick="openProject('project1.html')">
+      <img src="assets/esp32.gif" alt="ESP32 Project">
+      <div class="card-content">
+        <div class="card-title">ESP32 Web Control</div>
+        <div class="card-desc">Control devices via web interface using ESP32.</div>
+      </div>
     </div>
 
-    <!-- POST -->
-    <div class="card">
-        <img src="images/blink.png">
-        <div class="content">
-            <div class="title">Blink</div>
-            <div class="desc">Basic LED blinking</div>
-
-            <div class="actions">
-                <span class="like" onclick="like(event,this)">❤️ 0</span>
-                <button class="btn">Open</button>
-            </div>
-        </div>
+    <!-- Card 2 -->
+    <div class="card" onclick="openProject('project2.html')">
+      <img src="assets/arduino.gif" alt="Arduino Project">
+      <div class="card-content">
+        <div class="card-title">Arduino Smart Sensor</div>
+        <div class="card-desc">Sensor-based automation with Arduino.</div>
+      </div>
     </div>
 
-    <!-- ESP32 -->
-    <div class="card" onclick="openPage('esp32.html')">
-        <img src="images/esp32s3.png">
-        <div class="content">
-            <div class="title">ESP32</div>
-            <div class="desc">XIAO ESP32-S3</div>
+    <!-- Add more cards easily -->
 
-            <div class="actions">
-                <span class="like" onclick="like(event,this)">❤️ 0</span>
-                <button class="btn">Open</button>
-            </div>
-        </div>
-    </div>
+  </div>
 
-</div>
+  <footer>
+    © 2026 ProjectHub — Built by You 🚀
+  </footer>
 
-<script>
-
-function openPage(page){
-    window.location.href = page;
-}
-
-function like(e, el){
-    e.stopPropagation();
-    let count = parseInt(el.innerText.split(" ")[1]);
-    count++;
-    el.innerText = "❤️ " + count;
-}
-
-</script>
+  <script>
+    function openProject(page) {
+      window.location.href = page;
+    }
+  </script>
 
 </body>
 </html>
